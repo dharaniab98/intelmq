@@ -528,6 +528,11 @@
             "module": "intelmq.bots.parsers.spamhaus.parser_drop",
             "parameters": {}
         },
+        "Spys One": {
+            "description": "Spys One Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.spys_one.parser",
+            "parameters": {}
+        },
         "Sucuri Malware": {
             "description": "Sucuri Malware parser parses the list of Hidden Iframes and Conditional redirections from Sucuri.",
             "module": "intelmq.bots.parsers.sucuri.parser",
