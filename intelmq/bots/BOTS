@@ -470,6 +470,11 @@
             "module": "intelmq.bots.parsers.malwareurl2.parser",
             "parameters": {}
         },
+        "Maxmind": {
+            "description": "Maxmind is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.maxmind.parser",
+            "parameters": {}
+        },
         "Microsoft CTIP": {
             "description": "Parses JSON data from Microsoft's CTIP program.",
             "module": "intelmq.bots.parsers.microsoft.parser_ctip",
