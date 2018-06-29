@@ -559,6 +559,11 @@
                 "error_log_message": false
             }
         },
+        "Talos": {
+            "description": "Talos  Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.talos.parser",
+            "parameters": {}
+        },
         "Threatminer": {
             "description": "Threatminer Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.threatminer.parser",
