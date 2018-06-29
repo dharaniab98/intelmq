@@ -13,16 +13,16 @@ class MaxmindParserBot(Bot):
         raw_report = utils.base64_decode(report["raw"])
 
         soup = bs(raw_report, 'html.parser')
-        feed_list = soup.find_all('a','span3')
+        feed_list = soup.find_all('a', 'span3')
 
         for feed in feed_list:
             event = self.new_event(report)
 
-            event.add('classification.type', 'vulnerable service')
+            event.add('classification.type', 'blacklist')
             event.add('source.ip', feed.text.strip())
             event.add('raw', feed)
             self.send_message(event)
-           
+
         self.acknowledge_message()
 
 
