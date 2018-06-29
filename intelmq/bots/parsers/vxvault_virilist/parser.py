@@ -22,7 +22,7 @@ class VXVaultViriListParserBot(Bot):
             event.add('source.url', 'http://' + data[1].text.split('[D] ')[1])
             event.add('source.ip', data[3].text.strip())
             event.add('malware.hash.md5', data[2].text)
-            event.add('time.source', data[0].text)
+            event.add('time.source', data[0].text + 'UTC')
             event.add('classification.type', 'malware')
             event.add('raw', feed)
             self.send_message(event)

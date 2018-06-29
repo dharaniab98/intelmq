@@ -449,6 +449,11 @@
             "module": "intelmq.bots.parsers.malc0de.parser",
             "parameters": {}
         },
+        "Malekal Malwaredb": {
+            "description": "Malekal malwaredb  Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.malekal.parser",
+            "parameters": {}
+        },
         "Malware Domain List": {
             "description": "Malware Domain List Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.malwaredomainlist.parser",
@@ -492,6 +497,11 @@
         "Netlab 360": {
             "description": "Netlab 360 Parser is the bot responsible to parse the DGA and Magnitude reports and sanitize the information.",
             "module": "intelmq.bots.parsers.netlab_360.parser",
+            "parameters": {}
+        },
+        "Norton": {
+            "description": "Norton Feed Parser is the bot responsible to parse the reports and sanitize the information.",
+            "module": "intelmq.bots.parsers.norton_safeweb.parser",
             "parameters": {}
         },
         "Nothink": {
@@ -665,6 +675,14 @@
                 "redis_cache_port": "6379",
                 "redis_cache_password": null,
                 "redis_cache_ttl": "86400"
+            }
+        },
+        "Domain Suffix": {
+            "description": "Extracts the domain suffix from a domain and saves it in the the domain_suffix field.",
+            "module": "intelmq.bots.experts.domain_suffix.expert",
+            "parameters": {
+                "field": "fqdn",
+                "suffix_file": "<path of suffix file>"
             }
         },
         "Field Reducer": {

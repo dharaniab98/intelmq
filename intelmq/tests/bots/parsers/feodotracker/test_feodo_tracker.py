@@ -21,10 +21,10 @@ EVENT1 = {"feed.name": "Feodo Tracker Feed",
           "feed.url": "https://feodotracker.abuse.ch/",
           "feed.provider": "feodotracker.abuse.ch",
           "time.observation": "2018-05-04T11:16:46+00:00",
-          "time.source": "2018-06-25T23:56:27+00:00",
+          "time.source": "2018-06-26T05:26:27+00:00",
           "__type": "Event",
-          "extra.version": "E",
-          'status': 'online'
+          "malware.name": "heodo",
+          'status': 'online',
           "classification.type": "c&c",
           "source.ip": "24.121.176.48",
           "raw": "PHRyIGJnY29sb3I9IiM4MzdiN2IiIG9ubW91c2VvdXQ9InRoaXMuc3R5bGUuYmFja2dyb3Vu"
