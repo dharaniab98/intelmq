@@ -464,6 +464,11 @@
             "module": "intelmq.bots.parsers.malwareurl2.parser",
             "parameters": {}
         },
+        "Maxmind": {
+            "description": "Maxmind is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.maxmind.parser",
+            "parameters": {}
+        },
         "Microsoft CTIP": {
             "description": "Parses JSON data from Microsoft's CTIP program.",
             "module": "intelmq.bots.parsers.microsoft.parser_ctip",
@@ -522,6 +527,11 @@
             "module": "intelmq.bots.parsers.spamhaus.parser_drop",
             "parameters": {}
         },
+        "Spys One": {
+            "description": "Spys One Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.spys_one.parser",
+            "parameters": {}
+        },
         "Sucuri Malware": {
             "description": "Sucuri Malware parser parses the list of Hidden Iframes and Conditional redirections from Sucuri.",
             "module": "intelmq.bots.parsers.sucuri.parser",
@@ -576,6 +586,11 @@
         "VXVault": {
             "description": "VXVault Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.vxvault.parser",
+            "parameters": {}
+        },
+        "VXVault ViriList": {
+            "description": "VXVault ViriList Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.vxvault_virilist.parser",
             "parameters": {}
         },
         "Web Inspektor": {
@@ -701,6 +716,12 @@
             "module": "intelmq.bots.experts.google_safebrowsing.expert",
             "parameters": {
                 "service_url": "http://127.0.0.1:5000/gglsbl/lookup/"
+            }
+        },
+        "Add Hash": {
+            "description": "Hash is the bot responsible for adding hash of message to message if it is not present.",
+            "module": "intelmq.bots.experts.hash.expert",
+            "parameters": {
             }
         },
         "Add Hostname":{
