@@ -564,6 +564,11 @@
                 "error_log_message": false
             }
         },
+        "Talos": {
+            "description": "Talos  Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.talos.parser",
+            "parameters": {}
+        },
         "Threatminer": {
             "description": "Threatminer Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.threatminer.parser",
@@ -773,6 +778,13 @@
                 "overwrite": false
             }
         },
+        "MalShare": {
+            "description": "MalShare bot is responsible for adding data into the events through hash values",
+            "module": "intelmq.bots.experts.malshare.expert",
+            "parameters": {
+                "api_key": null
+            }
+    },
         "AddTime": {
             "description": "AddTime bot adds timestamp in extra field",
             "module": "intelmq.bots.experts.add_time.expert",
