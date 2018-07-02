@@ -542,6 +542,11 @@
                 "overwrite": true
             }
         },
+        "Sigmaprojects": {
+            "description": "Sigmaprojets Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.sigmaprojects.parser",
+            "parameters": {}
+         },
         "Spamhaus CERT": {
             "description": "Spamhaus CERT Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.spamhaus.parser_cert",
