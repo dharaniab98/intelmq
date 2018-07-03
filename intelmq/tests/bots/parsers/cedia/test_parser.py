@@ -15,14 +15,14 @@ EXAMPLE_REPORT = {"feed.url": "https://mirror.cedia.org.ec/malwaredomains/justdo
                   "feed.name": "Cedia Feed",
                   "__type": "Report",
                   "raw": utils.base64_encode(REPORT_DATA),
-                  "time.observation": "2018-06-30T08:59:52+00:00"
+                  "time.observation": "2018-07-02T13:06:35+00:00"
                   }
 
 EXAMPLE_EVENT = {"__type": "Event",
                  "feed.url": "https://mirror.cedia.org.ec/malwaredomains/justdomains",
                  "feed.name": "Cedia Feed",
+                 "time.observation": "2018-07-02T13:06:35+00:00",
                  'classification.type': 'blacklist',
-                 'feed.name': 'Cedia Feed',
                  'source.fqdn': 'amazon.co.uk.security-check.ga',
                  'raw': 'YW1hem9uLmNvLnVrLnNlY3VyaXR5LWNoZWNrLmdh',
                  }
