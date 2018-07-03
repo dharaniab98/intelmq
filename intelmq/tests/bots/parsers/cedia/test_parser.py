@@ -21,7 +21,7 @@ EXAMPLE_REPORT = {"feed.url": "https://mirror.cedia.org.ec/malwaredomains/justdo
 EXAMPLE_EVENT = {"__type": "Event",
                  "feed.url": "https://mirror.cedia.org.ec/malwaredomains/justdomains",
                  "feed.name": "Cedia Feed",
-                 'classification.type': 'malware',
+                 'classification.type': 'blacklist',
                  'feed.name': 'Cedia Feed',
                  'source.fqdn': 'amazon.co.uk.security-check.ga',
                  'raw': 'YW1hem9uLmNvLnVrLnNlY3VyaXR5LWNoZWNrLmdh',

@@ -15,7 +15,7 @@ class CediaParserBot(Bot):
             event = self.new_event(report)
 
             event.add('source.fqdn', feed)
-            event.add('classification.type', 'malware')
+            event.add('classification.type', 'blacklist')
             event.add('raw', feed)
             self.send_message(event)
 
