@@ -331,6 +331,11 @@
             "module": "intelmq.bots.parsers.cleanmx.parser",
             "parameters": {}
         },
+        "Cruzit": {
+             "description": "Cruzit is the bot responsible to parse the report and sanitize the information.",
+             "module": "intelmq.bots.parsers.cruzit.parser",
+             "parameters": {}
+         },
         "Cybercrime Ccam": {
             "description": "Cybercrime is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.cybercrime_ccam.parser",
