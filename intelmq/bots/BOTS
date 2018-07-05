@@ -291,6 +291,11 @@
             "module": "intelmq.bots.parsers.bambenek.parser",
             "parameters": {}
         },
+        "Benkow": {
+            "description": "Benkow parser is the bot responsible to parse and and sanitize the information from the feeds available from Bambenek.",
+            "module": "intelmq.bots.parsers.benkow.parser",
+            "parameters": {}
+        },
         "Bitcash Blocklist Feed": {
             "description": "Bitcash Blocklist parser is the bot responsible to parse and sanitize the information.",
             "module": "intelmq.bots.parsers.bitcash.parser",
