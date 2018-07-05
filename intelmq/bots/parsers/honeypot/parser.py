@@ -26,7 +26,6 @@ class HoneypotParserBot(Bot):
             event.add('time.source', (datetime.strptime(data[3].text.strip(), '%Y-%m-%d')).isoformat() + 'UTC')
             event.add('classification.type', 'blacklist')
             event.add('extra.last_seen', data[4].text.strip())
-            event.add('extra.event', data[1].text.strip())
             event.add('raw', feed)
             self.send_message(event)
 
