@@ -1,29 +1,28 @@
 # -*- coding: utf-8 -*-
-
-from bs4 import BeautifulSoup as bs
+import json
 
 from intelmq.lib import utils
 from intelmq.lib.bot import Bot
 
 
-class MaxmindParserBot(Bot):
+class SigmaProjectsParserBot(Bot):
 
     def process(self):
         report = self.receive_message()
         raw_report = utils.base64_decode(report["raw"])
 
-        soup = bs(raw_report, 'html.parser')
-        feed_list = soup.find_all('a', 'span3')
-
+        feed_list = raw_report.split('\n')
         for feed in feed_list:
+            if '/' not in feed:
+                continue
             event = self.new_event(report)
 
+            event.add('source.network', feed)
             event.add('classification.type', 'blacklist')
-            event.add('source.ip', feed.text.strip())
             event.add('raw', feed)
             self.send_message(event)
 
         self.acknowledge_message()
 
 
-BOT = MaxmindParserBot
+BOT = SigmaProjectsParserBot

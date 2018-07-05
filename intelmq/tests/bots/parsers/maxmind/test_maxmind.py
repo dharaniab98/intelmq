@@ -21,7 +21,7 @@ EVENT1 = {"feed.name": "maxmind feed",
           "feed.provider": "maxmind.com",
           "time.observation": "2018-05-04T11:16:46+00:00",
           "__type": "Event",
-          "classification.type": "vulnerable service",
+          "classification.type": "blacklist",
           "source.ip": "1.40.215.65",
           "raw": "PGEgY2xhc3M9InNwYW4zIiBocmVmPSJoaWdoLXJpc2staXAtc2FtcGxlLzEuNDAuMjE1LjY1Ij4xLjQwLjIxNS42NTwvYT4="
           }

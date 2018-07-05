@@ -20,7 +20,6 @@ EXAMPLE_REPORT = {"feed.url": "https://www.projecthoneypot.org/list_of_ips.php",
 
 EXAMPLE_EVENT = {"__type": "Event",
                  'classification.type': 'blacklist',
-                 'extra.event': 'Bad Event',
                  'extra.last_seen': '2018-06-29',
                  'feed.name': 'Honeypot Feed',
                  'feed.url': 'https://www.projecthoneypot.org/list_of_ips.php',
