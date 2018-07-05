@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from datetime import datetime
 
 from intelmq.lib import utils
 from intelmq.lib.bot import Bot
@@ -22,7 +22,8 @@ class BenkowParserBot(Bot):
                 event.add('source.url', 'http://' + columns[1])
             event.add('source.ip', columns[2], raise_failure=False)
             event.add('classification.type', 'malware')
-            event.add('time.source', (datetime.datetime.strptime(columns[3].replace('";', ''), '%d-%m-%Y')).isoformat() + 'UTC')
+            event.add('time.source', (datetime.strptime(columns[3].replace('";', ''),\
+                                         '%d-%m-%Y')).isoformat() + 'UTC')
             event.add('raw', feed)
             self.send_message(event)
 
