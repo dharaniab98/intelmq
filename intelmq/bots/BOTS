@@ -468,6 +468,11 @@
             "module": "intelmq.bots.parsers.iotmalware.parser",
             "parameters": {}
         },
+        "Isc Sans Ip": {
+             "description": "Isc Sans Ip parser is the bot responsible to parse the report and sanitize the information.",
+             "module": "intelmq.bots.parsers.isc_sans_ip.parser",
+             "parameters": {}
+         },
         "JSON": {
             "description": "JSON Parser converts from a JSON-String into an Event",
             "module": "intelmq.bots.parsers.json.parser",
