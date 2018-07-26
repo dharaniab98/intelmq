@@ -5,7 +5,6 @@ from intelmq.lib import utils
 from intelmq.lib.bot import ParserBot
 
 
-
 class CybercrimeParserBot(ParserBot):
     def init(self):
         self.tags = []
@@ -13,13 +12,13 @@ class CybercrimeParserBot(ParserBot):
         self.info = []
 
     def parse(self, soup):
-        for td in soup.findAll('td',attrs={'style':'background-color: rgb(11, 11, 11);'}):
+        for td in soup.findAll('td', attrs={'style': 'background-color: rgb(11, 11, 11);'}):
             if td.text != " ":
                 self.info.append(td.text)
-                self.raw += '%s'%(td)
-                if len(self.info)%4 == 0:
+                self.raw += '%s' % (td)
+                if len(self.info) % 4 == 0:
                     self.tags.append(self.info)
-                    self.tags[len(self.tags)-1].append(self.raw)
+                    self.tags[len(self.tags) - 1].append(self.raw)
                     self.raw = ''
                     self.info = []
 
@@ -32,7 +31,7 @@ class CybercrimeParserBot(ParserBot):
         data = self.parse(soup)
         for item in data:
             event = self.new_event(report)
-            event.add('malware.name', item[0])
+            event.add('malware.name', 'atmos')
             event.add('time.source', item[1] + "UTC")
             event.add('source.fqdn', item[2], raise_failure=False)
             event.add('source.ip', item[2], raise_failure=False)
