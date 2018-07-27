@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
+from datetime import datetime
 
 from intelmq.lib.bot import Bot
 from intelmq.lib import utils
 
-ioc =['ip','fqdn','url','network']
-
-
+ioc = ['ip', 'fqdn', 'url', 'network']
 
 
 class TlsParserBot(Bot):
@@ -18,18 +17,18 @@ class TlsParserBot(Bot):
 
         for data in item:
             event = self.new_event(report)
-            event.add('classification.type','malware')
-            event.add('classification.taxonomy','malacious code')
+            event.add('classification.type', 'malware')
+            event.add('classification.taxonomy', 'malacious code')
             if 'source_type' in data:
                 event.add('extra', {"source_type": data['source_type']})
             if 'ioc_type' in data:
                 ioc_type = data['ioc_type']
                 if ioc_type in ioc:
-                   event.add('source.%s'%(ioc_type),data['value'])
+                    event.add('source.%s' % (ioc_type), data['value'])
             if 'time_source' in data:
-                dt = data['time_source'] + " UTC"
+                dt = datetime.utcfromtimestamp(data['time_source']).isoformat() + " UTC"
                 event.add('time.source', dt)
-            event.add('raw',json.dumps(data))
+            event.add('raw', json.dumps(data))
 
             self.send_message(event)
 

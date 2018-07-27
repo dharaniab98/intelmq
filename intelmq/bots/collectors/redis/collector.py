@@ -27,21 +27,18 @@ class RedisCollectorBot(CollectorBot):
                                  db=self.redis_db)
 
     def process(self):
-        self.logger.debug("Looking for data in queue: %s"% self.queue_name)
+        self.logger.debug("Looking for data in queue: %s" % self.queue_name)
         data_size = self.redis.llen(self.queue_name)
-        self.logger.debug("Available items in queue: %s"% data_size)
+        self.logger.debug("Available items in queue: %s" % data_size)
         if not data_size or data_size == 0:
             self.stop()
         data = []
         for i in range(0, data_size):
             item = self.redis.rpop(self.queue_name)
-            data.append(str(item,"utf-8"))
-
-        data = "\n".join(data)
-
-        report = self.new_report()
-        report.add("raw", data)
-        self.send_message(report)
+            item_data = (str(item, "utf-8")).replace('True', 'true')
+            report = self.new_report()
+            report.add("raw", item_data)
+            self.send_message(report)
 
 
 BOT = RedisCollectorBot
