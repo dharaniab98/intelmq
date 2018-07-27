@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+    <title>URLVir: Monitor Malicious Executable Urls</title>
+
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
+	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	
+    <!-- Custom styles for this template -->
+    <link href="http://www.urlvir.com/css/starter-template.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Select -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+	
+	<!-- CookieConsent - START -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+	<style>.cc-window { opacity: 0.85; letter-spacing: 1px; word-spacing: 0; } .cc-message { font-size: 10px; line-height: 20px; } .cc-window.cc-floating { padding: 1em; max-width: 22em; } .cc-btn { padding: 0; } .cc-link { font-family: Helvetica, Calibri, Arial, sans-serif; word-spacing: 0; letter-spacing: 1px; line-height: 23px; font-size: 10px; padding: 0 !important; margin: 0 !important; } </style>
+    <!-- CookieConsent - END -->
+  </head>
+
+  <body>
+  
+<script type="text/javascript">
+<!--	
+$(document).ready(function() {
+
+   var hash = window.location.hash;
+
+   if (hash != "")
+       $('#tabs a[href="' + hash + '"]').tab('show');
+   else
+       $('#tabs a:first').tab('show');
+});
+//-->
+</script>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.urlvir.com/">URLVir</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://www.urlvir.com/">Home</a></li>
+            <li><a href="http://www.urlvir.com/submit-urls/">Submit URLs</a></li>
+            	      		<li class="dropdown">
+              	      		    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Export Database <span class="caret"></span></a>
+              	      		    <ul class="dropdown-menu">
+                	      		    <li><a href="http://www.urlvir.com/export-hosts/" target="_blank">Export Hosts</a></li>
+                	      		    <li><a href="http://www.urlvir.com/export-ip-addresses/" target="_blank">Export Hosts IPs</a></li>
+              	      		    </ul>
+            	      		</li>
+            <li><a href="http://www.novirusthanks.org/company/" target="_blank">Company</a></li>
+            <li><a href="http://www.novirusthanks.org/contacts/" target="_blank">Contacts</a></li>
+			<li><a href="https://twitter.com/novirusthanks" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+			<li><a href="https://www.facebook.com/NoVirusThanks/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <div class="page-header">
+          <h1>Monitor Malicious Executable Urls</h1>
+        </div>
+		
+        <p>URLVir is an online security service developed by <a href="http://www.novirusthanks.org/" target="_blank">NoVirusThanks</a> that automatically monitors changes of malicious EXE urls (executable files), MS Office files (DOC, XLS), PDF files and Hancitor URLs (i.e hxxp://cepd[.]info/wp-content/plugins/perth-portfolio/1). The usage of this service is recommended only to security experts, we show paths of dangerous urls, so make sure you do not download anything, unless you know what you are doing.</p>
+
+		<div style="margin: 20px 0;">
+				<form class="form-inline" role="form" action="" method="post">
+		      	<div class="form-group">
+		        	<input type="text" name="input" class="form-control" id="Input" placeholder="Search database...">
+		      	</div>
+				<div class="form-group">
+				<select class="selectpicker" name="type" data-width="120px">
+  			    <option value="HOST" selected>HOST</option>
+  			    <option value="IP">IP</option>
+  			    <option value="MD5">MD5</option>
+			    </select>
+                </div>
+		      	<button type="submit" name="go" class="btn btn-primary btn-form btn-block-xs-only"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+		    	</form>
+		</div>
+		
+				
+		<p>Do not hesitate to <a href="http://www.novirusthanks.org/contacts/" target="_blank">contact us</a> in case of false positive.</p>
+		
+		<h3>Last checked malicious urls</h3>
+		
+		<p>In total we are monitoring <span class="text-danger"><b>1,094</b> active malicious urls</span>.</p>
+				
+		<table class="table table-striped table-bordered"><tr><th>Changed</th><th>URL</th><th>IP Address</th><th>File MD5 Hash</th><th>File Size</th><th>Status</th></tr><tr><td>2018-07-25</td> <td>http://bizbuilder.co.za/newsle...</td> <td>169.239.217.12</td> <td>71041a599486244406024590c5c5f51d</td> <td>381.11 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://www.yuanjhua.com/sM03OX...</td> <td>50.93.198.131</td> <td>2e0e5caa24f880c79078e10210996145</td> <td>180.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://lucatek.com/...</td> <td>94.23.64.24</td> <td>fec553561588892836eb39d4cc336edf</td> <td>161.50 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://www.mecanique-vivante.c...</td> <td>213.186.33.2</td> <td>fec553561588892836eb39d4cc336edf</td> <td>161.50 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://synapticasoft...</td> <td>202.143.99.87</td> <td>c8c475b478c8de0b150a81b2a542896f</td> <td>279.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://lumieres-vie-madagascar...</td> <td>213.186.33.19</td> <td>fec553561588892836eb39d4cc336edf</td> <td>161.50 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://markfilm....</td> <td>87.98.239.19</td> <td>fec553561588892836eb39d4cc336edf</td> <td>161.50 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://elephanttimberframe.com...</td> <td>192.240.163.10</td> <td>b670654c0666850e8123ab510e706f3f</td> <td>78.99 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://elephanttimberframe.com...</td> <td>192.240.163.10</td> <td>fb5ebe75c8916647dde1985ab8460b51</td> <td>46.29 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://elephanttimberframe.com...</td> <td>192.240.163.10</td> <td>9a33a30f4b9b77f10dc1f86ab40be03b</td> <td>167.95 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-25</td> <td>http://elephanttimberframe.com...</td> <td>192.240.163.10</td> <td>cf69aa20ba1893eabf6d495d6d943d9f</td> <td>45.26 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://srikrisna.co.id/Availab...</td> <td>103.215.176.200</td> <td>b6460ab2cb5a3466924d6eb6ea3b7a3c</td> <td>225.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://cancomic.com/Company-In...</td> <td>103.89.84.9</td> <td>b6460ab2cb5a3466924d6eb6ea3b7a3c</td> <td>225.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://link.mx/rec...</td> <td>23.254.165.212</td> <td>b6460ab2cb5a3466924d6eb6ea3b7a3c</td> <td>225.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://jdp.rs/Cor...</td> <td>212.200.188.8</td> <td>73d53cbd55fe58a11fef7f773fe658ac</td> <td>219.75 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://tomas.datanom.fi/testla...</td> <td>85.134.54.10</td> <td>a393eec189aa7d289693bbae7b1c3101</td> <td>231.75 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://exodor.com.tr/For-Check...</td> <td>31.186.8.165</td> <td>b6460ab2cb5a3466924d6eb6ea3b7a3c</td> <td>225.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://doanhnghiepcanbiet.net/...</td> <td>45.119.83.224</td> <td>b6460ab2cb5a3466924d6eb6ea3b7a3c</td> <td>225.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>https://kerosky.com/Company-In...</td> <td>113.20.29.7</td> <td>b6460ab2cb5a3466924d6eb6ea3b7a3c</td> <td>225.00 KB</td> <td><font color="red">ONLINE</font></td> </tr><tr><td>2018-07-22</td> <td>http://yespay.co.id/Client/Inv...</td> <td>202.152.27.4</td> <td>8e42e8da9bf3d5d0194ae63b6358fb64</td> <td>229.50 KB</td> <td><font color="green">OFFLINE</font></td> </tr></table>		
+		<p>We have downloaded <b>9,817</b> malware files.</p>
+		
+	  </div> <!-- /.starter-template -->
+
+    </div> <!-- /.container -->
+	
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Copyright &copy; 2014-2018 <a href="http://www.novirusthanks.org/">NoVirusThanks Company Srl</a> &ndash; All rights reserved</p>
+		<p class="text-muted credit"><a href="https://twitter.com/novirusthanks">Follow us on Twitter</a> &ndash; <a href="https://www.facebook.com/NoVirusThanks">Like us on Facebook</a></p>
+	  </div>
+    </div>
+	
+ 	<!-- CookieConsent - START -->
+    <script>window.cookieconsent.initialise({"palette":{"popup":{"background":"#000"},"button":{"background":"#f1d600"}},"position": "bottom-left","content":{"message":"We use own and third party cookies to develop statistical data and show custom advertising through browsing analysis sharing it with our partners. By using this site, you agree to our use of cookies. ","dismiss":"Close","link":"Learn more &rarr;","href":"http://www.privalicy.com/privacy-policy/38798728/"}});</script>
+    <!-- CookieConsent - END -->
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15146193-19']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async
+= true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www')
++ '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

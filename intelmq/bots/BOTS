@@ -672,6 +672,11 @@
             "module": "intelmq.bots.parsers.urlvir.parser",
             "parameters": {}
         },
+        "URLVir IP": {
+            "description": "URLVir IP Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.urlvir_ip.parser",
+            "parameters": {}
+        },
         "VXVault": {
             "description": "VXVault Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.vxvault.parser",
