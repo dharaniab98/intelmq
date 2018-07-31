@@ -7,7 +7,7 @@ from intelmq.lib import utils
 from intelmq.lib.bot import Bot
 
 
-class URLVirIPParserBot(Bot):
+class URLVirHTMLParserBot(Bot):
 
     def process(self):
         report = self.receive_message()
@@ -23,6 +23,7 @@ class URLVirIPParserBot(Bot):
             event.add('source.ip', data[2].text.strip())
             event.add('malware.hash.md5', data[3].text)
             event.add('time.source', datetime.strptime(data[0].text, '%Y-%m-%d').isoformat() + 'UTC')
+            event.add('status', data[5].text)
             event.add('classification.type', 'malware')
             event.add('raw', feed)
             self.send_message(event)
@@ -30,4 +31,4 @@ class URLVirIPParserBot(Bot):
         self.acknowledge_message()
 
 
-BOT = URLVirIPParserBot
+BOT = URLVirHTMLParserBot

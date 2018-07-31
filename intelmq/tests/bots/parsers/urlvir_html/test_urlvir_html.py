@@ -3,10 +3,10 @@ import os
 import unittest
 
 import intelmq.lib.test as test
-from intelmq.bots.parsers.urlvir_ip.parser import URLVirIPParserBot
+from intelmq.bots.parsers.urlvir_html.parser import URLVirHTMLParserBot
 from intelmq.lib import utils
 
-with open(os.path.join(os.path.dirname(__file__), 'test_urlvir_ip.data')) as handle:
+with open(os.path.join(os.path.dirname(__file__), 'test_urlvir_html.data')) as handle:
     REPORT_DATA = handle.read()
 
 REPORT = {"__type": "Report",
@@ -23,6 +23,7 @@ EVENT1 = {"feed.name": "URL",
           "time.observation": "2018-07-26T10:06:44+00:00",
           "time.source": "2018-07-25T00:00:00+00:00",
           "__type": "Event",
+          "status": "ONLINE",
           'malware.hash.md5': '71041a599486244406024590c5c5f51d',
           "classification.type": "malware",
           "source.ip": "169.239.217.12",
@@ -32,11 +33,11 @@ EVENT1 = {"feed.name": "URL",
           }
 
 
-class TestURLVirIPParserBot(test.BotTestCase, unittest.TestCase):
+class TestURLVirHTMLParserBot(test.BotTestCase, unittest.TestCase):
 
     @classmethod
     def set_bot(cls):
-        cls.bot_reference = URLVirIPParserBot
+        cls.bot_reference = URLVirHTMLParserBot
         cls.default_input_message = REPORT
 
     def test_event(self):
