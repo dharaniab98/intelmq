@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup as bs
+from datetime import datetime
 
 from intelmq.lib import utils
 from intelmq.lib.bot import ParserBot
@@ -32,7 +33,7 @@ class CybercrimeParserBot(ParserBot):
         for item in data:
             event = self.new_event(report)
             event.add('malware.name', 'atmos')
-            event.add('time.source', item[1] + "UTC")
+            event.add('time.source', datetime.strptime(item[1], '%d/%m/%Y %H:%M:%S').isoformat() + "UTC")
             event.add('source.fqdn', item[2], raise_failure=False)
             event.add('source.ip', item[2], raise_failure=False)
             event.add('malware.hash.md5', item[3])
