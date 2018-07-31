@@ -322,6 +322,11 @@
             "module": "intelmq.bots.parsers.benkow.parser",
             "parameters": {}
         },
+        "Benkow RAT": {
+            "description": "Benkow RAT parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.benkow_rat.parser",
+            "parameters": {}
+        },
         "Bitcash Blocklist Feed": {
             "description": "Bitcash Blocklist parser is the bot responsible to parse and sanitize the information.",
             "module": "intelmq.bots.parsers.bitcash.parser",

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+      <title>Logs Center</title>
+      <link href="css/table_view.css" rel="stylesheet" type="text/css">
+   </head>
+      <body>
+      <div id="wrapper">
+         <!DOCTYPE html>
+         <html>
+            <head>
+               <link rel='stylesheet' type='text/css' href='css/menu.css' />
+               <script type='text/javascript' src='jquery-1.7.2.min.js'></script>
+            </head>
+            <body>
+               <div id='cssmenu'>
+                  <ul>
+                     <li class='active'><a href='index.html'><span>Home</span></a></li>
+                     <li><a href='commands.html'><span>Commands</span></a></li>
+                     <li><a href='passwords.php?page=1'><span>Panels tracker</span></a></li>
+                     <li><a href='ratracker.php?page=1'><span>RATracker</span></a></li>^M
+		     <li><a href='malwares.html'><span>Malwares</span></a></li>
+                     <li><a href='statistics.html'><span>Links</span></a></li>
+                     <lfi><a href='data.gif'><span>Logout</span></a></lfi>
+                  </ul>
+               </div>
+            </body>
+         </html>
+		 </br>
+		 <form name="myForm" action="search_rat.php" enctype="multipart/form-data" method="POST" >
+		 <input class="object" name="search_rat" value="%word%" type="text">
+		 <input class="object" type="submit" value="Search">
+		 <a href="export_rat.php">[urls.csv]</a>
+                 <a href="https://www.veronicavaleros.com/blog/2018/3/12/a-study-of-rats-third-timeline-iteration">[RAT info]</a>
+		 </form>
+		 
+         <table>
+            <caption>Trackers</caption>
+            <thead>
+               <tr>
+                  <th scope='col'>Select</th>
+                  <th scope='col'>Date</th>
+                  <th scope='col'>Type</th>
+                  <th scope='col'>HostName</th>
+                  <th scope='col'>IP</th>
+
+               </tr>
+            </thead>
+            <tbody>
+               <form action="#" method="post">
+			   <tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>26-07-2018</td><td>LimeRat</td><td>181.52.105.187:1996</td><td>181.52.105.187</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>Remcos</td><td>185.148.241.58:2442</td><td>185.148.241.58</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>Remcos</td><td>191.101.22.196:2409</td><td>191.101.22.196</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>Netwire</td><td>betterlifecommerce.ddns.net:4786</td><td>185.62.189.133</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>delightc.myftp.biz:5552</td><td>221.121.135.94</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>giustini.ddns.net:1604</td><td>80.183.67.74</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>idontratpeople.ddns.net:1243</td><td>77.139.164.191</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>infoupdates.sytes.net:56362</td><td>141.255.147.227</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>microsoftddns.ddns.net:81</td><td>microsoftddns.ddns.net</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>Remcos</td><td>opitalia.ddns.net:6969</td><td>69.30.240.83</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>saif321.ddns.net:1177</td><td>37.219.69.134</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>serveo.net:14588</td><td>159.89.214.31</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>takethatshit.ddns.net:5552</td><td>130.204.24.111</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>test1fg.ddns.net:8882</td><td>141.255.153.54</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>thiagohora.hopto.org:1177</td><td>thiagohora.hopto.org</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>vam22.ddns.net:502</td><td>vam22.ddns.net</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>westshark.ddns.net:1177</td><td>160.179.78.248</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>25-07-2018</td><td>njRAT</td><td>woocum.blogsyte.com:1177</td><td>105.159.69.236</td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>zueirasemlimites.duckdns.org</td><td></td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>zohirsenia.ddns.net</td><td></td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>zikokoko.ddns.net</td><td></td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>zerokart.kro.kr</td><td></td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>zebircp.duckdns.org</td><td></td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>zayd506.ddns.net</td><td></td> </tr><tr><td><input type='checkbox' name='selection[]' value='fuck'></td><td>24-07-2018</td><td>NjRat</td><td>youtubersxd.ddns.net</td><td></td> </tr>
+            </tbody>
+         </table>
+
+        <div style="text-align: right; float: right;">
+         <a href="#" onclick="return confirm('Are you sure you want to delete all Online entries?')"><img src="./img/delete-all.png" title='Delete All Entries'></a> 
+         </div></br>
+		 <style type="text/css">
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    background-color: none;
+}
+</style>
+		 		 <a href='ratracker.php?page=2'>>></a>		 
+
+         </br>
+         <style type="text/css">
+         .container {
+         margin: 0 auto;
+         border-collapse: collapse;
+         border: 1px solid #cccccc;
+         font-family:Tahoma, "Trebuchet MS", Segoe;
+         background: #e3e3e3;
+         color:#333;
+         width:900px;
+         margin-bottom: 10px;
+         margin-top: 10px;
+         padding-bottom: 10px;
+         padding-top: 10px;
+         margin-right: 10 auto;
+         }
+         .object {
+         background-color: inherit;
+         border-style: dashed;
+         border-width: 1px;
+         border-color: #d1d1d1;
+         outline-color: inherit;
+         padding: 3px;
+         color:#222222;
+         margin: 10 auto;
+         background: #e3e3e3;
+         font-family:Tahoma, "Trebuchet MS", Segoe;
+         font-size: 12px;
+         }
+         </style>
+
+         </form>
+         </br> </br> </br> 
+         <div style="text-align: right; float: left;">
+            <span style="text-align:center; font-family: tahoma,sans-serif,trebuchet; font-size:10px; color:#f1f1f1;">Copyright Hancitor 2017 <3		
+         </div>
+      </div>
+   </body>
+</html>
