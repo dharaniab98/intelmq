@@ -318,7 +318,7 @@
             "parameters": {}
         },
         "Benkow": {
-            "description": "Benkow parser is the bot responsible to parse and and sanitize the information from the feeds available from Bambenek.",
+            "description": "Benkow parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.benkow.parser",
             "parameters": {}
         },
