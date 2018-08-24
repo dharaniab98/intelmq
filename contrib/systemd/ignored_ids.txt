@@ -1,2 +1,7 @@
 # all the bot ids existing in this file will be ignored by systemd script
 # one bot id on one line
+cleanmx-phishing-collector
+cleanmx-virus-collector
+proxyspy-collector
+malwarebytes-hphosts-domain-collector
+misp-tl-collector

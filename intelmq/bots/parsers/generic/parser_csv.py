@@ -89,6 +89,8 @@ class GenericCsvParserBot(ParserBot):
 
         for key, value in zip(self.columns, row):
             keys = key.split('|') if '|' in key else [key, ]
+            value = value.strip()
+
             for key in keys:
                 if isinstance(value, str) and not value:  # empty string is never valid
                     break
@@ -107,6 +109,10 @@ class GenericCsvParserBot(ParserBot):
                     value = DATA_CONVERSIONS[self.data_type[key]](value)
 
                 if key in ["time.source", "time.destination"]:
+                    try:
+                        value = int(value)
+                    except:
+                        pass
                     value = TIME_CONVERSIONS[self.time_format](value)
                 elif key.endswith('.url'):
                     if not value:
