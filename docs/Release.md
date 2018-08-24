@@ -72,6 +72,8 @@ Add a new empty changelog and news section. For the changelog:
 
 ### Tests
 
+### Tools
+
 ### Contrib
 
 ### Known issues
@@ -79,6 +81,10 @@ Add a new empty changelog and news section. For the changelog:
 And for the news:
 
 ```
+### Tools
+
+### Harmonization
+
 ### Configuration
 
 ### Libraries
