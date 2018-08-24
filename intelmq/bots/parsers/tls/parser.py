@@ -26,7 +26,7 @@ class TlsParserBot(Bot):
                 if ioc_type in ioc:
                     event.add('source.%s' % (ioc_type), data['value'])
             if 'time_source' in data:
-                dt = datetime.utcfromtimestamp(data['time_source']).isoformat() + " UTC"
+                dt = datetime.utcfromtimestamp(data['time_source'] / 1000).isoformat() + " UTC"
                 event.add('time.source', dt)
             event.add('raw', json.dumps(data))
 
