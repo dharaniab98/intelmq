@@ -16,6 +16,13 @@ EXAMPLE_INPUT2 = {"__type": "Event",
                   "extra.last_seen": "2018-07-26T00:00:00+00:00",
                   "feed.name": "test-feed-2"}
 
+EXAMPLE_INPUT3 = {"__type": "Event",
+                  "classification.type": "malware",
+                  "time.observation": "2018-07-27T00:00:00+00:00",
+                  "extra.last_seen": "2018-07-26T00:00:00+00:00",
+                  "extra.tags": "malware",
+                  "feed.name": "test-feed-3"}
+
 EXAMPLE_OUTPUT1 = {'__type': 'Event',
                    'classification.type': 'malware',
                    'time.observation': '2018-07-27T00:00:00+00:00',
@@ -28,6 +35,14 @@ EXAMPLE_OUTPUT2 = {'__type': 'Event',
                    'extra.last_seen': '2018-07-26T00:00:00+00:00',
                    'extra.author': 'cert',
                    'feed.name': 'test-feed-2'}
+
+EXAMPLE_OUTPUT3 = {'__type': 'Event',
+                   'classification.type': 'malware',
+                   'time.observation': '2018-07-27T00:00:00+00:00',
+                   'extra.last_seen': '2018-07-26T00:00:00+00:00',
+                   'extra.author': 'cert-in',
+                   'extra.tags': 'malware',
+                   'feed.name': 'test-feed-3'}
 
 
 class TestAddFieldExpertBot(test.BotTestCase, unittest.TestCase):
@@ -50,6 +65,12 @@ class TestAddFieldExpertBot(test.BotTestCase, unittest.TestCase):
         self.sysconfig = {'field-name': 'author', 'field-value': 'cert'}
         self.run_bot()
         self.assertMessageEqual(0, EXAMPLE_OUTPUT2)
+
+    def test_event_with_extra_dict(self):
+        self.input_message = EXAMPLE_INPUT3
+        self.sysconfig = {'field-name': 'author', 'field-value': 'cert-in'}
+        self.run_bot()
+        self.assertMessageEqual(0, EXAMPLE_OUTPUT3)
 
 
 if __name__ == '__main__':  # pragma: no cover

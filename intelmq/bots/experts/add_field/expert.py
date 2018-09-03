@@ -13,11 +13,21 @@ class AddFieldExpertBot(Bot):
 
         if 'extra' in event:
             extra = event['extra']
-            extra[self.field_name] = self.field_value
-            event.change('extra', extra)
+            if isinstance(extra, str):
+                    try:
+                        extra = loads(extra)
+                    except:
+                        pass
+            if isinstance(extra, Mapping):
+                extra[self.field_name] = self.field_value
+            else:
+                extra = {
+                         self.field_name: self.field_value
+                        }
+            event.change('extra',extra)
 
-        else:
-            event.add('extra', {self.field_name: self.field_value})
+        else: # no extra add extra
+            event.add('extra',{self.field_name: self.field_value})
 
         self.send_message(event)
         self.acknowledge_message()
