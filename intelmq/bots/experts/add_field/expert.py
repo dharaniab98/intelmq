@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from intelmq.lib.bot import Bot
+from collections.abc import Mapping
 
 
 class AddFieldExpertBot(Bot):
@@ -21,13 +22,11 @@ class AddFieldExpertBot(Bot):
             if isinstance(extra, Mapping):
                 extra[self.field_name] = self.field_value
             else:
-                extra = {
-                         self.field_name: self.field_value
-                        }
-            event.change('extra',extra)
+                extra = {self.field_name: self.field_value}
+            event.change('extra', extra)
 
-        else: # no extra add extra
-            event.add('extra',{self.field_name: self.field_value})
+        else:  # no extra add extra
+            event.add('extra', {self.field_name: self.field_value})
 
         self.send_message(event)
         self.acknowledge_message()
