@@ -16,7 +16,22 @@ See the changelog for a full list of changes.
 
 ### Postgres databases
 
-1.1.0 Feature release (unreleased)
+
+1.1.1 Bugfix release (unreleased)
+----------------------------------
+
+### Tools
+
+### Harmonization
+
+### Configuration
+
+### Libraries
+
+### Postgres databases
+
+
+1.1.0 Feature release (2018-09-05)
 ----------------------------------
 ### Requirements
 - Python 3.4 or newer is required.
@@ -215,7 +230,7 @@ UPDATE events
    WHERE "classification.identifier" = 'accessiblevnc' AND "feed.name" = 'Accessible-VNC';
 ```
 
-1.0.6 Bugfix release (unreleased)
+1.0.6 Bugfix release (2018-08-31)
 ---------------------------------
 
 ### Configuration

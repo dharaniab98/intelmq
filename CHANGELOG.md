@@ -1,11 +1,13 @@
 CHANGELOG
 ==========
 
-
 1.2.0 (unreleased)
 ------------------
+- use pyupgrade to upgrade all files to python3-only syntax, e.g. use `super()` instead of `super(..., ...)` in all files. Migration from old to new string formatting has not been applied if the resulting code would be longer.
 
 ### Core
+- `lib/utils`
+  - Function `unzip` to extract files from gzipped and/or tar-archives.
 
 ### Harmonization
 
@@ -14,12 +16,14 @@ CHANGELOG
 - added `intelmq.bots.parsers.opendxl.collector` (#1265).
 - added `intelmq.bots.collectors.api`: collecting data using an HTTP API (#123, #1187).
 - added `intelmq.bots.collectors.rsync` (#1286).
+- `intelmq.bots.collectors.http.collector_http`: Add support for uncompressing of gzipped-files (#1270).
 
 #### Parsers
 - added `intelmq.bots.parsers.mcafee.parser_atd` (#1265).
 - `intelmq.bots.parsers.generic.parser_csv`:
   - New parameter `columns_required` to optionally ignore parse errors for columns.
 - added `intelmq.bots.parsers.cert_eu.parser_csv` (#1287).
+- added `intelmq.bots.parsers.surbl.surbl`
 
 #### Experts
 - added `intelmq.bots.experts.recordedfuture_iprisk` (#1267).
@@ -43,7 +47,40 @@ CHANGELOG
 
 ### Known issues
 
-1.1.0 (unreleased)
+
+1.1.1 (unreleased)
+------------------
+
+### Core
+
+### Core
+
+### Harmonization
+
+### Bots
+#### Collectors
+
+#### Parsers
+
+#### Experts
+
+#### Outputs
+- `intelmq.bots.outputs.redis`: Fix sending password to redis server.
+
+### Documentation
+
+### Packaging
+
+### Tests
+
+### Tools
+
+### Contrib
+
+### Known issues
+
+
+1.1.0 (2018-09-05)
 ------------------
 - Support for Python 3.3 has been dropped in IntelMQ and some dependencies of it. Python 3.3 reached its end of life and Python 3.4 or newer is a hard requirement now.
 - The list of feeds docs/Feeds.md has now a machine-readable equivalent YAML file in intelmq/etc/feeds.yaml
@@ -105,6 +142,7 @@ CHANGELOG
     None (default): If the value exists an `KeyExists` exception is thrown (previously the same as False).
     This allows shorter code in the bots, as an 'overwrite' configuration parameter can be directly passed to the function.
   - The message class has now the possibility to return a default value for non-exisiting fields, see `Message.set_default_value`.
+  - Message.get behaves the same like `Message.__getitem__` (#1305).
 - Add `RewindableFileHandle` to utils making handling of CSV files more easy (optionally)
 - lib/pipeline:
   * you may now define more than one destination queues path the bot should pass the message to, see [Pipelines](https://github.com/certtools/intelmq/blob/develop/docs/User-Guide.md#pipeline-configuration) (#1088, #1190).
@@ -179,7 +217,10 @@ CHANGELOG
 - Added wait expert for sleeping
 - Added domain suffix expert to extract the TLD/Suffix from a domain name.
 - `bots.experts.maxmind_geoip`: New (optional) parameter `overwrite`, by default false. The current default was to overwrite!
-- `intelmq.bots.experts.ripencc_abuse_contact`: Extend deprecated parameter compatibility `query_ripe_stat` until 2.0 because of a logic bug in the compatibility code, use `query_ripe_stat_asn` and `query_ripe_stat_ip` instead (#1071, #1291).
+- `intelmq.bots.experts.ripencc_abuse_contact`:
+  * Extend deprecated parameter compatibility `query_ripe_stat` until 2.0 because of a logic bug in the compatibility code, use `query_ripe_stat_asn` and `query_ripe_stat_ip` instead (#1071, #1291).
+  * Handle HTTP status code 404 for DB AS queries.
+  * Add caching capability.
 - `intelmq/bots/experts/asn_lookup/update-asn-data`: Errors produce proper output on stdout/stderr.
 - `intelmq/bots/experts/maxmind_geoip/update-geoip-data`: Errors produce proper output on stdout/stderr.
 - `intelmq/bots/experts/tor_nodes/update-tor-nodes`: Errors produce proper output on stdout/stderr.
@@ -218,12 +259,14 @@ CHANGELOG
 - New test for checking if `docs/Feeds.md` is up to date with `etc/feeds.yaml`.
 
 ### Known bugs
+- contrib: feeds-config-generator does not add feed name as parameter (#1314).
+- bot debugger requires configured source pipeline (#1307).
+- shadowserver parser: drone feed has spam events (#1271).
+- debug log level on python 3.7 not applied (#1269).
 - `bots.experts.sieve` does not support textX (#1246).
-- performance degradation for extra fields (#1117).
-- Postgres output: support condensed JSONDicts (#1107).
 - Bots started with IntelMQ-Manager stop when the webserver is restarted (#952).
 
-1.0.6 Bugfix release (unreleased)
+1.0.6 Bugfix release (2018-08-31)
 ---------------------------------
 
 ### Core
@@ -273,6 +316,7 @@ CHANGELOG
 - `cron-jobs/update-tor-nodes`: Use check.torproject.org as source as internet2.us is down (#1289).
 
 ### Known issues
+- shadowserver parser: drone feed has spam events (#1271).
 
 
 1.0.5 Bugfix release (2018-06-21)
