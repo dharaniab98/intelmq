@@ -1080,6 +1080,7 @@
             "parameters": {
                 "elastic_host": "127.0.0.1",
                 "elastic_port": 9200,
+                "dynamic_index": true,
                 "elastic_index": "intelmq",
                 "elastic_doctype": "events",
                 "http_username": null,
