@@ -85,7 +85,7 @@ class ElasticsearchOutputBot(Bot):
                     event_dict.pop(field)
 
         event_dict = replace_keys(event_dict,
-                                  replacement='_')
+                                  replacement=self.replacement_char)
 
         self.es.index(index=event_index,
                       doc_type=self.elastic_doctype,

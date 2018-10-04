@@ -1086,7 +1086,7 @@
                 "http_username": null,
                 "http_password": null,
                 "flatten_fields": "extra",
-                "replacement_char": "_" 
+                "replacement_char": "_"
             }
         },
         "File": {
