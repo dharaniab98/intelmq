@@ -45,7 +45,7 @@ class ElasticsearchOutputBot(Bot):
         self.elastic_doctype = getattr(self.parameters,
                                        'elastic_doctype', 'events')
         self.replacement_char = getattr(self.parameters,
-                                        'replacement_char', False)
+                                        'replacement_char', '_')
         self.flatten_fields = getattr(self.parameters,
                                       'flatten_fields', ['extra'])
         if isinstance(self.flatten_fields, str):
@@ -84,9 +84,8 @@ class ElasticsearchOutputBot(Bot):
                         event_dict[field + '_' + key] = value
                     event_dict.pop(field)
 
-        if self.replacement_char:
-            event_dict = replace_keys(event_dict,
-                                      replacement='_')
+        event_dict = replace_keys(event_dict,
+                                  replacement='_')
 
         self.es.index(index=event_index,
                       doc_type=self.elastic_doctype,
