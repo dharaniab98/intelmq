@@ -1080,12 +1080,13 @@
             "parameters": {
                 "elastic_host": "127.0.0.1",
                 "elastic_port": 9200,
+                "dynamic_index": true,
                 "elastic_index": "intelmq",
                 "elastic_doctype": "events",
                 "http_username": null,
                 "http_password": null,
                 "flatten_fields": "extra",
-                "replacement_char": "_"
+                "replacement_char": false 
             }
         },
         "File": {

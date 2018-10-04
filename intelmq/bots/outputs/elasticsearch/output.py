@@ -34,6 +34,8 @@ class ElasticsearchOutputBot(Bot):
                                     'elastic_host', '127.0.0.1')
         self.elastic_port = getattr(self.parameters,
                                     'elastic_port', '9200')
+        self.dynamic_index = getattr(self.parameters,
+                                     'dynamic_index', True)
         self.elastic_index = getattr(self.parameters,
                                      'elastic_index', 'intelmq')
         self.http_username = getattr(self.parameters,
@@ -43,7 +45,7 @@ class ElasticsearchOutputBot(Bot):
         self.elastic_doctype = getattr(self.parameters,
                                        'elastic_doctype', 'events')
         self.replacement_char = getattr(self.parameters,
-                                        'replacement_char', '_')
+                                        'replacement_char', False)
         self.flatten_fields = getattr(self.parameters,
                                       'flatten_fields', ['extra'])
         if isinstance(self.flatten_fields, str):
@@ -54,19 +56,19 @@ class ElasticsearchOutputBot(Bot):
             kwargs = {'http_auth': (self.http_username, self.http_password)}
         self.es = Elasticsearch([{'host': self.elastic_host, 'port': self.elastic_port}], **kwargs)
 
-        if not self.es.indices.exists(self.elastic_index):
-            self.es.indices.create(index=self.elastic_index, ignore=400)
-
     def process(self):
         event = self.receive_message()
         event_dict = event.to_dict(hierarchical=False)
 
-        try:
-            time_observation = event_dict["time.observation"]
-            y,m,d = time_observation.split('T')[0].split('-')
-            event_index = 'imq_%s_%s'%(m,y)
-        except:
-            event_index = 'imq_unsorted'
+        if self.dynamic_index:
+            try:
+                time_observation = event_dict["time.observation"]
+                y, m, d = time_observation.split('T')[0].split('-')
+                event_index = '%s_%s_%s' % (self.elastic_index, m, y)
+            except:
+                event_index = 'imq_unsorted'
+        else:
+            event_index = self.elastic_index
 
         for field in self.flatten_fields:
             if field in event_dict:
@@ -82,8 +84,9 @@ class ElasticsearchOutputBot(Bot):
                         event_dict[field + '_' + key] = value
                     event_dict.pop(field)
 
-        event_dict = replace_keys(event_dict,
-                                  replacement=self.replacement_char)
+        if self.replacement_char:
+            event_dict = replace_keys(event_dict,
+                                      replacement='_')
 
         self.es.index(index=event_index,
                       doc_type=self.elastic_doctype,
