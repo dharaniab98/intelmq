@@ -29,9 +29,10 @@ class CybercrimeParserBot(ParserBot):
         raw_report = utils.base64_decode(report["raw"])
         soup = bs(raw_report, 'html.parser')
         data = self.parse(soup)
-        data.pop(0)
         for item in data:
             event = self.new_event(report)
+            if "-::DATE" in item:
+                continue
             event.add('malware.name', item[3])
             event.add('time.source', datetime.strptime(item[0], '%d-%m-%Y').isoformat() + "UTC")
             if not item[1].startswith("http"):
