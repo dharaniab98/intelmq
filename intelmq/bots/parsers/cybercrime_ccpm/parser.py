@@ -35,7 +35,7 @@ class CybercrimeParserBot(ParserBot):
             event.add('time.source', datetime.strptime(item[0], '%d/%m/%Y %H:%M:%S').isoformat() + "UTC")
             event.add('source.fqdn', item[1], raise_failure=False)
             event.add('source.ip', item[1], raise_failure=False)
-            event.add('source.url', item[3])
+            event.add('source.url', item[3], raise_failure=False)
             event.add('malware.hash.md5', item[4])
             event.add('classification.type', 'c&c')
             event.add('raw', item[5])
