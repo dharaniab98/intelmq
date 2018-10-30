@@ -26,10 +26,10 @@ class FeodoTrackerParserBot(Bot):
             event.add('classification.type', 'c&c')
             if data[1].text == 'E':
                 event.add('malware.name', 'Emotet')
-            elif data[1].text in ['D', 'B']:
-                event.add('malware.name', 'Dridex')
             elif data[1].text == 'C':
                 event.add('malware.name', 'Geodo')
+            else:
+                event.add('malware.name', 'Dridex')
 
             if data[7].text != 'never':
                 event.add('extra.last_seen', data[7].text)
