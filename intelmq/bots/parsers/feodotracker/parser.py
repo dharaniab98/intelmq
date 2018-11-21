@@ -24,14 +24,12 @@ class FeodoTrackerParserBot(Bot):
             event.add('status', data[3].text)
             event.add('time.source', data[0].text + 'UTC')
             event.add('classification.type', 'c&c')
-            if data[1].text in ['A', 'B']:
-                event.add('malware.name', 'Feodo')
+            if data[1].text == 'E':
+                event.add('malware.name', 'Emotet')
             elif data[1].text == 'C':
-                event.add('malware.name', 'Geodo and Emotet')
-            elif data[1].text == 'D':
+                event.add('malware.name', 'Geodo')
+            else:
                 event.add('malware.name', 'Dridex')
-            elif data[1].text == 'E':
-                event.add('malware.name', 'Heodo')
 
             if data[7].text != 'never':
                 event.add('extra.last_seen', data[7].text)
