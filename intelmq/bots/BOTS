@@ -615,6 +615,11 @@
             "module": "intelmq.bots.parsers.phishtank.parser",
             "parameters": {}
         },
+        "Precisionsec": {
+            "description": "Precisionsec Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.precisionsec.parser",
+            "parameters": {}
+        },
         "Ransomware": {
             "description": "Ransomware Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.ransomware.parser",
