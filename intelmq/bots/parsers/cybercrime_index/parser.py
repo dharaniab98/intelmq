@@ -39,7 +39,7 @@ class CybercrimeParserBot(ParserBot):
                 item[1] = "http://" + item[1]
             event.add('source.url', item[1])
             event.add('source.ip', item[2], raise_failure=False)
-            event.add('classification.type', 'malware')
+            event.add('classification.type', 'c&c')
             event.add('raw', item[4])
             self.send_message(event)
         self.acknowledge_message()
