@@ -698,6 +698,11 @@
             "module": "intelmq.bots.parsers.tls.parser",
             "parameters": {}
         },
+        "Tor Query": {
+            "description": "Tor Query Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.tor_query.parser",
+            "parameters": {}
+        },
         "Turris Greylist": {
             "description": "Turris Greylist Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.turris.parser",
