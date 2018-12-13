@@ -20,22 +20,14 @@ class FeodoTrackerParserBot(Bot):
             data = feed.find_all('td')
 
             event = self.new_event(report)
-            event.add('source.ip', data[2].text)
+            event.add('source.ip', data[1].text)
             event.add('status', data[3].text)
             event.add('time.source', data[0].text + 'UTC')
             event.add('classification.type', 'c&c')
-            if data[1].text == 'E':
-                event.add('malware.name', 'Emotet')
-            elif data[1].text == 'C':
-                event.add('malware.name', 'Geodo')
-            else:
-                event.add('malware.name', 'Dridex')
-
-            if data[7].text != 'never':
-                event.add('extra.last_seen', data[7].text)
+            event.add('malware.name', data[2].text)
+            event.add('source.asn', data[5].text.split(' ')[0][2:], raise_failure=False)
             if data[4].text != 'Not listed':
                 event.add('extra.SBL', data[4].text)
-
             event.add('raw', feed)
             self.send_message(event)
 
