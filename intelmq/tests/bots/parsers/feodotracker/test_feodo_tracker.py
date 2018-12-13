@@ -11,33 +11,38 @@ with open(os.path.join(os.path.dirname(__file__), 'test_feodo_tracker.data')) as
 
 REPORT = {"__type": "Report",
           "feed.name": "Feodo Tracker Feed",
-          "feed.url": "https://feodotracker.abuse.ch/",
-          "feed.provider": "feodotracker.abuse.ch",
+          "feed.url": "https://feodotracker.abuse.ch/browse/",
+          "feed.provider": "abuse.ch",
           "raw": utils.base64_encode(REPORT_DATA),
-          "time.observation": "2018-05-10T11:16:46+00:00"
+          "time.observation": "2018-12-12T09:06:08+00:00"
           }
 
 EVENT1 = {"feed.name": "Feodo Tracker Feed",
-          "feed.url": "https://feodotracker.abuse.ch/",
-          "feed.provider": "feodotracker.abuse.ch",
-          "time.observation": "2018-05-04T11:16:46+00:00",
-          "time.source": "2018-06-26T05:26:27+00:00",
+          "feed.url": "https://feodotracker.abuse.ch/browse/",
+          "feed.provider": "abuse.ch",
+          "time.observation": "2018-12-12T09:06:08+00:00",
+          "time.source": "2018-12-11T21:33:10+00:00",
           "__type": "Event",
-          "malware.name": "emotet",
-          'status': 'online',
+          "malware.name": "heodo",
+          "status": "Online",
           "classification.type": "c&c",
-          "source.ip": "24.121.176.48",
-          "raw": "PHRyIGJnY29sb3I9IiM4MzdiN2IiIG9ubW91c2VvdXQ9InRoaXMuc3R5bGUuYmFja2dyb3Vu"
-                 "ZENvbG9yPScjODM3YjdiJzsiIG9ubW91c2VvdmVyPSJ0aGlzLnN0eWxlLmJhY2tncm91bmRDb"
-                 "2xvcj0nI0ZGQTIwMCc7Ij48dGQ+MjAxOC0wNi0yNiAwNToyNjoyNzwvdGQ+PHRkIGFsaWduPS"
-                 "JjZW50ZXIiIGJnY29sb3I9IiNGRjQwMDAiPjxzdHJvbmc+RTwvc3Ryb25nPjwvdGQ+PHRkPjx"
-                 "hIGhyZWY9Ii9ob3N0LzI0LjEyMS4xNzYuNDgvIiB0YXJnZXQ9Il9wYXJlbnQiIHRpdGxlPSJT"
-                 "aG93IG1vcmUgaW5mb3JtYXRpb24gYWJvdXQgdGhpcyBGZW9kbyBDJmFtcDtDIj4yNC4xMjEuM"
-                 "Tc2LjQ4PC9hPjwvdGQ+PHRkIGJnY29sb3I9IiNiYzU5NTkiPm9ubGluZTwvdGQ+PHRkIGJnY2"
-                 "9sb3I9IiM0Zjg4M2YiPk5vdCBsaXN0ZWQ8L3RkPjx0ZD5BUzE5MTA4IFNVRERFTkxJTkstQ09"
-                 "NTVVOSUNBVElPTlM8L3RkPjx0ZD48aW1nIGFsdD0iLSIgaGVpZ2h0PSIxMCIgc3JjPSJpbWFn"
-                 "ZXMvZmxhZ3MvdXMuZ2lmIiB0aXRsZT0iVVMgKFVTKSIgd2lkdGg9IjE2Ii8+IFVTPC90ZD48d"
-                 "GQ+bmV2ZXI8L3RkPjwvdHI+"
+          "source.asn": 5769,
+          "source.ip": "96.21.235.243",
+          "raw": "PHRyPjx0ZD4yMDE4LTEyLTExIDIxOjMzOjEwPC90ZD48dGQ+PGEgaHJlZj0iL"
+                 "2Jyb3dzZS9ob3N0Lzk2LjIxLjIzNS4yNDMvIiB0YXJnZXQ9Il9wYXJlbnQiIH"
+                 "RpdGxlPSJHZXQgbW9yZSBpbmZvcm1hdGlvbiBhYm91dCB0aGlzIGJvdG5ldCB"
+                 "DJmFtcDtDIj45Ni4yMS4yMzUuMjQzPC9hPjwvdGQ+PHRkPjxzcGFuIGNsYXNz"
+                 "PSJiYWRnZSBiYWRnZS1pbmZvIj5IZW9kbyA8YSBocmVmPSJodHRwczovL21hb"
+                 "HBlZGlhLmNhYWQuZmtpZS5mcmF1bmhvZmVyLmRlL2RldGFpbHMvd2luLmdlb2"
+                 "RvIiB0YXJnZXQ9Il9ibGFuayIgdGl0bGU9Ik1hbHBlZGlhOiBHZW9kbyAoYWt"
+                 "hIEVtb3RldCBha2EgSGVvZG8pIj48aW1nIGFsdD0iLSIgaGVpZ2h0PSIxMiIg"
+                 "c3JjPSIvaW1hZ2VzL2ljb25zL2xpbmstZXh0ZXJuYWwuc3ZnIiB3aWR0aD0iM"
+                 "TIiLz48L2E+PC9zcGFuPjwvdGQ+PHRkPjxzcGFuIGNsYXNzPSJiYWRnZSBiYW"
+                 "RnZS1kYW5nZXIiPjxpbWcgYWx0PSItIiBzcmM9Ii9pbWFnZXMvaWNvbnMvZmx"
+                 "hbWUuc3ZnIi8+ICBPbmxpbmU8L3NwYW4+PC90ZD48dGQ+Tm90IGxpc3RlZDwv"
+                 "dGQ+PHRkIGNsYXNzPSJ0ZXh0LXRydW5jYXRlIj5BUzU3NjkgVklERU9UUk9OI"
+                 "C0gVmlkZW90cm9uIFRlbGVjb20gTHRlZTwvdGQ+PHRkPjxpbWcgYWx0PSItIi"
+                 "BzcmM9ImltYWdlcy9mbGFncy9jYS5wbmciIHRpdGxlPSJDQSIvPiBDQTwvdGQ+PC90cj4="
           }
 
 
