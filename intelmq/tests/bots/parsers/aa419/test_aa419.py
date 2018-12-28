@@ -18,10 +18,13 @@ REPORT = {"__type": "Report",
           }
 EVENT1 = {"feed.url": "https://db.aa419.org/fakebankslist.php",
           "time.observation": "2018-03-03T11:25:09+00:00",
-          "raw": "PHRkPjxhIGhyZWY9Imh0dHA6Ly93d3cuY29hc3RhbG9pbGdhc2NvcnAuY29tIiByZWw9Im5vZm9sbG93IiB0YXJnZXQ9Il9ibGF"
-                 "uayI+aHR0cDovL3d3dy5jb2FzdGFsb2lsZ2FzY29ycC5jb208L2E+wqA8L3RkPjx0ZD5Db2FzdGFsIE9pbCAmYW1wOyBHYXMgQ2"
-                 "9ycC7CoDwvdGQ+PHRkIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwwLDAsMC4xNSk7Ij5hY3RpdmXCoDwvdGQ+PH"
-                 "RkPjIwMTgtMDMtMDMgMDk6NDfCoDwvdGQ+PHRkPjIwMTgtMDMtMDMgMDk6NDfCoDwvdGQ+",
+          "raw": "PHRyIGNsYXNzPSJld1RhYmxlUm93Ij4KPHRkPjxhIGhyZWY9ImZha2ViYW5rc3ZpZXcucGhwP2tleT0xMzAwOTIiPj"
+                 "xzcGFuIGNsYXNzPSJwaHBtYWtlciI+PGltZyBhbHQ9IlZpZXciIGJvcmRlcj0iMCIgaGVpZ2h0PSIxNiIgc3JjPSJp"
+                 "bWFnZXMvYnJvd3NlLmdpZiIgd2lkdGg9IjE2Ii8+PC9zcGFuPjwvYT48L3RkPgo8dGQ+PGEgaHJlZj0iaHR0cDovL3"
+                 "d3dy5jb2FzdGFsb2lsZ2FzY29ycC5jb20iIHJlbD0ibm9mb2xsb3ciIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vd3d3"
+                 "LmNvYXN0YWxvaWxnYXNjb3JwLmNvbTwvYT7CoDwvdGQ+Cjx0ZD5Db2FzdGFsIE9pbCAmYW1wOyBHYXMgQ29ycC7CoD"
+                 "wvdGQ+Cjx0ZCBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsMCwwLDAuMTUpOyI+YWN0aXZlwqA8L3Rk"
+                 "Pgo8dGQ+MjAxOC0wMy0wMyAwOTo0N8KgPC90ZD4KPHRkPjIwMTgtMDMtMDMgMDk6NDfCoDwvdGQ+CjwvdHI+",
           "feed.name": "fake sites list feed",
           "extra.last_updated": "2018-03-03 09:47",
           "extra.phishing_site": "Coastal Oil & Gas Corp.",
@@ -35,10 +38,13 @@ EVENT2 = {"__type": "Event",
           "extra.last_updated": "2018-03-03 08:55",
           "extra.phishing_site": "VP Investment Bank",
           "extra.phishing_status": "active",
-          "raw": "PHRkPjxhIGhyZWY9Imh0dHA6Ly93d3cudnByaXZhdGVvbmxpbmUuY29tIiByZWw9Im5vZm9sbG93IiB0YXJnZXQ9Il9ibG"
-                 "FuayI+aHR0cDovL3d3dy52cHJpdmF0ZW9ubGluZS5jb208L2E+wqA8L3RkPjx0ZD5WUCBJbnZlc3RtZW50IEJhbmvCoDwvd"
-                 "GQ+PHRkIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwwLDAsMC4xNSk7Ij5hY3RpdmXCoDwvdGQ+PHRkPjIwM"
-                 "TgtMDMtMDMgMDg6NTXCoDwvdGQ+PHRkPjIwMTgtMDMtMDMgMDg6NTXCoDwvdGQ+",
+          "raw": "PHRyIGNsYXNzPSJld1RhYmxlQWx0Um93Ij4KPHRkPjxhIGhyZWY9ImZha2ViYW5rc3ZpZXcucGhwP2tleT0xMzAwOT"
+                 "EiPjxzcGFuIGNsYXNzPSJwaHBtYWtlciI+PGltZyBhbHQ9IlZpZXciIGJvcmRlcj0iMCIgaGVpZ2h0PSIxNiIgc3Jj"
+                 "PSJpbWFnZXMvYnJvd3NlLmdpZiIgd2lkdGg9IjE2Ii8+PC9zcGFuPjwvYT48L3RkPgo8dGQ+PGEgaHJlZj0iaHR0cD"
+                 "ovL3d3dy52cHJpdmF0ZW9ubGluZS5jb20iIHJlbD0ibm9mb2xsb3ciIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vd3d3"
+                 "LnZwcml2YXRlb25saW5lLmNvbTwvYT7CoDwvdGQ+Cjx0ZD5WUCBJbnZlc3RtZW50IEJhbmvCoDwvdGQ+Cjx0ZCBzdH"
+                 "lsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsMCwwLDAuMTUpOyI+YWN0aXZlwqA8L3RkPgo8dGQ+MjAxOC0w"
+                 "My0wMyAwODo1NcKgPC90ZD4KPHRkPjIwMTgtMDMtMDMgMDg6NTXCoDwvdGQ+CjwvdHI+",
           "time.observation": "2018-03-03T11:25:09+00:00",
           "time.source": "2018-03-03T08:55:00+00:00",
           "classification.type": "phishing",
