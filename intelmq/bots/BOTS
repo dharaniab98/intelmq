@@ -752,6 +752,11 @@
             "module": "intelmq.bots.parsers.webinspektor.parser",
             "parameters": {}
         },
+        "Zeus Tracker": {
+            "description": "Zeus Tracker Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.zeustracker.parser",
+            "parameters": {}
+        },
         "ZoneH": {
             "description": "ZoneH CSV report parser",
             "module": "intelmq.bots.parsers.zoneh.parser",
