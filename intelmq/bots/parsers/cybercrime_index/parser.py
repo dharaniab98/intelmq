@@ -33,7 +33,8 @@ class CybercrimeParserBot(ParserBot):
             event = self.new_event(report)
             if "-::DATE" in item:
                 continue
-            event.add('malware.name', item[3])
+            if 'Unknown' not in item[3]:
+                event.add('malware.name', item[3])
             event.add('time.source', datetime.strptime(item[0], '%d-%m-%Y').isoformat() + "UTC")
             if not item[1].startswith("http"):
                 item[1] = "http://" + item[1]
