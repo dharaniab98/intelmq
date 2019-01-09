@@ -18,7 +18,7 @@ class Aa419ParserBot(ParserBot):
             item = feed.find_all('td')
 
             event = self.new_event(report)
-            event.add('source.url', item[1].text.strip())
+            event.add('source.url', item[1].text.strip().split(' ')[0])
             event.add('extra.phishing_site', item[2].text.strip())
             event.add('extra.phishing_status', item[3].text.strip())
             event.add('extra.last_updated', item[5].text.strip())
