@@ -787,7 +787,8 @@
             "module": "intelmq.bots.experts.add_field.expert",
             "parameters": {
                 "field-name": "",
-                "field-value": ""
+                "field-value": "",
+                "add_to_extra": true
              }
         },
         "CERT.at Contact Database": {
