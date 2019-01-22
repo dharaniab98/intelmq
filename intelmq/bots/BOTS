@@ -1049,6 +1049,11 @@
                 "overwrite": false
             }
         },
+        "VXVault": {
+            "description": "VXVault Expert bot takes data from VXVault ViriFiche link and add it to the event.",
+            "module": "intelmq.bots.experts.vxvault.expert",
+            "parameters": {}
+        },
         "Wait": {
             "description": "Wait bot can wait for a some time or until a queue size is lower than a given numer.",
             "module": "intelmq.bots.experts.wait.expert",
