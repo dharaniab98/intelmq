@@ -838,6 +838,11 @@
                 "suffix_file": "<path of suffix file>"
             }
         },
+        "Feodo Tracker": {
+             "description": "Feodo Tracker Expert bot takes data from FeodoTracker Host link and add it to the event.",
+             "module": "intelmq.bots.experts.feodotracker.expert",
+             "parameters": {}
+        },
         "Field Reducer": {
             "description": "The field reducer bot is capable of removing fields from events.",
             "module": "intelmq.bots.experts.field_reducer.expert",
