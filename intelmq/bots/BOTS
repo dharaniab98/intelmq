@@ -489,6 +489,11 @@
             "module": "intelmq.bots.parsers.honeydb.parser",
             "parameters": {}
         },
+        "Guardicore": {
+            "description": "Guardicore parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.guardicore.parser",
+            "parameters": {}
+        },
         "Honeypot": {
             "description": "Honeypot parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.honeypot.parser",
