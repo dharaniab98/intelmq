@@ -484,14 +484,14 @@
                 "type_translation": null
             }
         },
-        "Honeydb Parser": {
-            "description": "Honeydb parser is the bot responsible to parse the report and sanitize the information.",
-            "module": "intelmq.bots.parsers.honeydb.parser",
-            "parameters": {}
-        },
         "Guardicore": {
             "description": "Guardicore parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.guardicore.parser",
+            "parameters": {}
+        },
+        "Honeydb Parser": {
+            "description": "Honeydb parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.honeydb.parser",
             "parameters": {}
         },
         "Honeypot": {
