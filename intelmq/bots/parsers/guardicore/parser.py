@@ -6,13 +6,14 @@ from datetime import datetime as dt, timedelta
 from intelmq.lib import utils
 from intelmq.lib.bot import Bot
 
-FEEDS = {'attackers': ['attackers_data', 'malware'], 'malicious_domains': ['mal_domains', 'malware'],
-         'malicious_cc': ['mal_cc', 'c&c'], 'scanners': ['scanners_data', 'scanner']}
+FEEDS = {'https://www.guardicore.com/threatfeed/code/data/top_attackers.js': ['attackers_data', 'malware'],
+         'https://www.guardicore.com/threatfeed/code/data/malicious_domains.js': ['mal_domains', 'malware'],
+         'https://www.guardicore.com/threatfeed/code/data/malicious_cc.js': ['mal_cc', 'c&c'],
+         'https://www.guardicore.com/threatfeed/code/data/top_scanners.js': ['scanners_data', 'scanner']}
 
 
 class GuardicoreParserBot(Bot):
     def init(self):
-        self.field = self.parameters.field
         now = dt.now()
         first_day = now - timedelta(now.isoweekday())
         ref_day = dt.strptime('2018-04-08', '%Y-%m-%d')
@@ -21,15 +22,16 @@ class GuardicoreParserBot(Bot):
     def process(self):
         report = self.receive_message()
         raw_report = utils.base64_decode(report["raw"])
+        field, feed_type = FEEDS[report["feed.url"]]
 
-        data = raw_report.split(FEEDS[self.field][0] + ' =')[2]
+        data = raw_report.split(field + ' =')[2]
         feeds_data = yaml.load(data)
         if self.index in feeds_data:
-            feeds = feeds_data[self.index][0] if self.field in ['attackers', 'scanners'] else feeds_data[self.index]
+            feeds = feeds_data[self.index][0] if field in ['attackers_data', 'scanners_data'] else feeds_data[self.index]
             for feed in feeds:
                 event = self.new_event(report)
-                event.add('classification.type', FEEDS[self.field][1])
-                if self.field == 'malicious_domains':
+                event.add('classification.type', feed_type)
+                if field == 'mal_domains':
                     event.add('source.fqdn', feed)
                 else:
                     event.add('source.ip', feed)

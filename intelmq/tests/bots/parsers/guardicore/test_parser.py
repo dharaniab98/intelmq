@@ -17,24 +17,28 @@ with open(os.path.join(os.path.dirname(__file__), 'test_scanners.data')) as hand
 
 REPORT1 = {"__type": "Report",
            "feed.name": "Guardicore Top Attackers IP Feed",
+           "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_attackers.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA1),
            "time.observation": "2019-01-05T00:00:00+00:00"
            }
 REPORT2 = {"__type": "Report",
            "feed.name": "Guardicore Malicious Domains Feed",
+           "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_domains.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA2),
            "time.observation": "2019-01-05T00:00:00+00:00"
            }
 REPORT3 = {"__type": "Report",
            "feed.name": "Guardicore Botnet IP Feed",
+           "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_cc.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA3),
            "time.observation": "2019-01-05T00:00:00+00:00"
            }
 REPORT4 = {"__type": "Report",
            "feed.name": "Guardicore Scanner IP Feed",
+           "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_scanners.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA4),
            "time.observation": "2019-01-05T00:00:00+00:00"
@@ -42,6 +46,7 @@ REPORT4 = {"__type": "Report",
 
 
 EVENT1 = {"feed.name": "Guardicore Top Attackers IP Feed",
+          "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_attackers.js",
           "feed.provider": "guardicore.com",
           "time.observation": "2019-01-05T00:00:00+00:00",
           "__type": "Event",
@@ -51,6 +56,7 @@ EVENT1 = {"feed.name": "Guardicore Top Attackers IP Feed",
           }
 
 EVENT2 = {"feed.name": "Guardicore Malicious Domains Feed",
+          "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_domains.js",
           "feed.provider": "guardicore.com",
           "time.observation": "2019-01-05T00:00:00+00:00",
           "__type": "Event",
@@ -60,6 +66,7 @@ EVENT2 = {"feed.name": "Guardicore Malicious Domains Feed",
           }
 
 EVENT3 = {"feed.name": "Guardicore Botnet IP Feed",
+          "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_cc.js",
           "feed.provider": "guardicore.com",
           "time.observation": "2019-01-05T00:00:00+00:00",
           "__type": "Event",
@@ -69,6 +76,7 @@ EVENT3 = {"feed.name": "Guardicore Botnet IP Feed",
           }
 
 EVENT4 = {"feed.name": "Guardicore Scanner IP Feed",
+          "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_scanners.js",
           "feed.provider": "guardicore.com",
           "time.observation": "2019-01-05T00:00:00+00:00",
           "__type": "Event",
@@ -86,25 +94,21 @@ class TestGuardicoreParserBot(test.BotTestCase, unittest.TestCase):
 
     def test_event_top_attackers(self):
         self.input_message = REPORT1
-        self.sysconfig = {"field": "attackers"}
         self.run_bot()
         self.assertMessageEqual(0, EVENT1)
 
     def test_event_malicious_domains(self):
         self.input_message = REPORT2
-        self.sysconfig = {"field": "malicious_domains"}
         self.run_bot()
         self.assertMessageEqual(0, EVENT2)
 
     def test_event_malicious_cc(self):
         self.input_message = REPORT3
-        self.sysconfig = {"field": "malicious_cc"}
         self.run_bot()
         self.assertMessageEqual(0, EVENT3)
 
     def test_event_scanners(self):
         self.input_message = REPORT4
-        self.sysconfig = {"field": "scanners"}
         self.run_bot()
         self.assertMessageEqual(0, EVENT4)
 
