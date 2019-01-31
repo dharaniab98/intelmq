@@ -538,6 +538,11 @@
             "module": "intelmq.bots.parsers.malekal.parser",
             "parameters": {}
         },
+	"Malshare":{
+		"description":"Malshare parser is the bot responsible to parse the report and sanitize the information.",
+		"module": "intelmq.bots.parsers.malshare.parser",
+		"parameters": {}
+	},
         "Malware Domain List": {
             "description": "Malware Domain List Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.malwaredomainlist.parser",

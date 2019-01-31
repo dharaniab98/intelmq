@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        	
+	<meta charset="utf-8">
+	<title>MalShare</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The MalShare Project is a community driven public malware repository that works to provide free access to malware samples and tooling to the infomation security community.">
+
+	
+	<link href="./css/bootstrap.css" rel="stylesheet">
+	<style type="text/css">
+
+		body {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #f5f5f5;
+		}
+
+	.hidden{
+	    display:none;
+	}
+	.ajax_loader{
+	    position:absolute;
+	    width:100%;
+	    height:100%;
+	    left:0;
+	    top:0;
+	    background:rgba(0,0,0,.5);
+	}
+	.ajax_loader i{
+	    position:absolute;
+	    left:50%;
+	    top:50%;
+	}
+
+		.form-signin {
+			max-width: 70%;
+			padding: 19px 29px 29px;
+			margin: 0 auto 20px;
+			background-color: #fff;
+			border: 1px solid #e5e5e5;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+			border-radius: 5px;
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+			box-shadow: 0 1px 2px rgba(0,0,0,.05);
+		}
+		.form-signin .form-signin-heading,
+		.form-signin .checkbox {
+			margin-bottom: 10px;
+		}
+		.form-signin input[type="text"],
+		.form-signin input[type="password"] {
+			font-size: 16px;
+			height: auto;
+			margin-bottom: 15px;
+			padding: 7px 9px;
+		}
+		.jumbotron {
+			margin: 60px 0;
+		}
+		.jumbotron h1 {
+			font-size: 72px;
+			line-height: 1;
+		}
+		.jumbotron .btn {
+			font-size: 21px;
+			padding: 14px 24px;
+		}	
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }			
+	
+	</style>
+	<link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+	<link href="./css/popup.css" rel="stylesheet">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-49931431-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</head>
+	<body>
+         
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+                <div class="container-fluid">
+                        <a class="brand" href="/" name="top">&nbsp;&nbsp;&nbsp;&nbsp;<b>Mal</b>Share</a>
+                        <div class="nav-collapse collapse">
+                                <ul class="nav">
+
+<li >
+    <a href="index.php">Home</a></li>
+<li >
+    <a href="upload.php">Upload</a></li>
+<li >
+    <a href="search.php">Search</a></li>
+<li >
+    <a href="pull.php">Pull Sample</a></li>
+<li><a href="register.php">Register</a></li><li>
+    <a href="./daily/">Daily Digest</a></li>
+<li >
+    <a href="doc.php">API</a></li>
+<li >
+    <a href="about.php">About</a></li>
+
+                                </ul>
+ <div class="nav pull-right">
+			          <form class="navbar-form navbar-right" method=post action="auth.php" >
+				            <input class="form-control" type="text" placeholder="API Key" aria-label="login" name=api_key>
+				            <button class="btnbtn-small  btn-success " type="submit">Login</button>
+			          </form>
+                                </div>
+				                        </div>
+                </div>
+    </div>
+</div>
+
+<br />
+
+<script type="text/javascript">
+    function ShowLoading(e) {
+        var div = document.createElement('div');
+        var img = document.createElement('img');
+        img.src = 'images/ajax-loader.gif';
+        div.style.cssText = 'position: fixed; top: 5%; left: 40%; z-index: 5000; width: 422px; text-align: center;';
+        div.appendChild(img);
+        document.body.appendChild(div);
+        return true;
+    }
+</script>
+
+
+
+	<div class="container" style="width:90%">			
+      		<div class="hero-unit"> 
+      			<div class="row">
+        			<div class="span12">
+                        <p>A free Malware repository providing researchers access to samples, malicous feeds, and Yara results.</p>
+        			</div>
+     			</div>
+     		</div>
+		<div class="container-fluid center text-center">
+			<div class="row">
+
+			<form method=get action=search.php id="search_form" class="form-search" onsubmit="ShowLoading()">
+				<label class="lead" for="inputSearch">Quick Search: </label>
+				<input type="text" name=query id='inputSearch' class="input-xxlarge">
+				<button type="submit" class="btn">Search</button>
+			</form>
+
+
+			</div>
+		</div>
+
+		
+		<p class="lead text-center">Recently added Samples</p>
+			<table class="table table-bordered table-striped" style="table-layout: fixed;">
+				<thead>  
+					<tr>  
+						<th style="width: 25%">MD5 Hash</th>  
+						<th style="width: 10%">File type</th>  
+						<th style="width: 10%">Added</th>  
+						<th style="width: 30%">Source</th>  
+						<th style="width: 25%">Yara Hits</th>
+					</tr>  
+				</thead>  
+				<tbody><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=628933d238a8747c1d0121bb6c408cef">628933d238a8747c1d0121bb6c408cef</a></td> 
+					<td>gzip</td> 
+					<td>2019-01-28 12:28:27 UTC</td><td>http://www.yxuwxpqjtdmj.tw/qunhxa/10567_94804...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=f89d0417c669c41bf9ac345ca5ee3d6b">f89d0417c669c41bf9ac345ca5ee3d6b</a></td> 
+					<td>gzip</td> 
+					<td>2019-01-28 12:23:57 UTC</td><td>http://www.xpunyseoxygs.tw/m5jMLA/nmwqofnyogl...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=f89452744438ec96de746199299e0829">f89452744438ec96de746199299e0829</a></td> 
+					<td>ASCII</td> 
+					<td>2019-01-28 12:23:49 UTC</td><td>https://mandrillapp.com/track/click/30505209/...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=98b2020d72d9bb87f1bf309669bad272">98b2020d72d9bb87f1bf309669bad272</a></td> 
+					<td>ASCII</td> 
+					<td>2019-01-28 12:23:44 UTC</td><td>https://mandrillapp.com/track/click/30505209/...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=8d5ad2c6226661a1467186c44e75aebe">8d5ad2c6226661a1467186c44e75aebe</a></td> 
+					<td>gzip</td> 
+					<td>2019-01-28 12:21:37 UTC</td><td>http://www.xeggufhxmczp.tw/ezlpng/42651_08817...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=e56c2fa5e4753a1454501bcbb7e7b23d">e56c2fa5e4753a1454501bcbb7e7b23d</a></td> 
+					<td>gzip</td> 
+					<td>2019-01-28 12:21:11 UTC</td><td>http://www.yxuwxpqjtdmj.tw/jqcyeo/180212_4034...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=28180ae024858703f6e55111cd8b5922">28180ae024858703f6e55111cd8b5922</a></td> 
+					<td>gzip</td> 
+					<td>2019-01-28 12:20:55 UTC</td><td>http://www.xeggufhxmczp.tw/ooqnlm/20272_88920...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=04d3bf69d4a28576f1fc629707b93312">04d3bf69d4a28576f1fc629707b93312</a></td> 
+					<td>gzip</td> 
+					<td>2019-01-28 12:19:32 UTC</td><td>http://www.uffvfxgutuat.tw/xtpeff/653448_4745...</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=7a46afc9d52d0869a1fa238d0ddee014">7a46afc9d52d0869a1fa238d0ddee014</a></td> 
+					<td>ASCII</td> 
+					<td>2019-01-28 12:19:13 UTC</td><td class="word-wrap: break-word">http://178.62.62.30/mips</td> <td></td></tr><tr>  
+					<td class="hash_font"><a href="sample.php?action=detail&hash=1eb8db7dc8cf8f4b48f999d1ff294c25">1eb8db7dc8cf8f4b48f999d1ff294c25</a></td> 
+					<td>ASCII</td> 
+					<td>2019-01-28 12:19:10 UTC</td><td class="word-wrap: break-word">http://178.62.62.30/m68k</td> <td></td></tr></tbody></table><center><h4>Total Samples:2714733</h4></center>	</div> 
+
+		
+
+
+        <div id="footer">
+                <div class="container">
+                        <p class="credit">(c) 2012 - 2018 The MalShare (TM) Project.  | 
+			<a href="tos.php"> Terms of Service </a> | 
+			<a href="sitemap.php"> Sitemap</a> | 
+                        <a href="https://twitter.com/mal_share?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @mal_share</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</p>
+                </div>
+        </div>
+
+
+  </body>
+</html>
