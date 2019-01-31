@@ -19,7 +19,7 @@ class FeodoTrackerExpertBot(Bot):
             for feed in feeds[1].find_all('tr')[1:]:
                 data = feed.find_all('td')
                 event.add('malware.hash.md5', data[1].text, overwrite=True)
-                event.add('source.port', data[4].text, overwrite=True)
+                event.add('destination.port', data[4].text, overwrite=True)
                 event.add('time.source', (dt.strptime(data[0].text, '%Y-%m-%d %H:%M:%S')).isoformat() + 'UTC', overwrite=True)
                 self.send_message(event)
         self.acknowledge_message()
