@@ -950,7 +950,12 @@
             "parameters": {
                 "api_key": null
             }
-    },
+        },
+        "Malshare Hash": {
+            "description": "Malshare Hash Expert bot is responsible for adding data into the events through hash values",
+            "module": "intelmq.bots.experts.malshare_hash.expert",
+            "parameters": {}
+        },
         "AddTime": {
             "description": "AddTime bot adds timestamp in extra field",
             "module": "intelmq.bots.experts.add_time.expert",
