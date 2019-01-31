@@ -25,7 +25,7 @@ EXAMPLE_OUTPUT = {"__type": "Event",
                   "classification.type": "c&c",
                   "malware.name": "heodo",
                   "source.asn": 11556,
-                  "source.port": 80,
+                  "destination.port": 80,
                   "malware.hash.md5": "8a831c8be1460a0da440b3b8c0087db5"
                   }
 
