@@ -1069,6 +1069,11 @@
                 "overwrite": false
             }
         },
+	"URLVir":{
+	    "description":"URLVir is the bot responsible for adding md5 hashes to the event.",
+	    "module":"intelmq.bots.experts.urlvir.expert",
+	    "parameter":{}
+	},
         "VXVault": {
             "description": "VXVault Expert bot takes data from VXVault ViriFiche link and add it to the event.",
             "module": "intelmq.bots.experts.vxvault.expert",
