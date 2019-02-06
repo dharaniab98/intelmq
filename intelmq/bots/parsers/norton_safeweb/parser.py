@@ -22,7 +22,7 @@ class NortonSafewebParserBot(Bot):
             event.add('classification.type', 'malware')
             event.add('source.ip', link, raise_failure=False)
             if 'source.ip' not in event:
-                event.add('source.url', 'http://' + link)
+                event.add('source.fqdn', link)
             event.add('raw', feed)
             self.send_message(event)
 
