@@ -19,6 +19,7 @@ class VXVaultExpertBot(Bot):
             event.add('extra.filename', data[0])
         event.add('malware.hash.sha1', data[3])
         event.add('malware.hash.sha256', data[4])
+        event.add('source.url', data[5], overwrite=True)
         event.add('time.source', (datetime.strptime(data[7], '%Y-%m-%d')).isoformat() + 'UTC')
         self.send_message(event)
         self.acknowledge_message()
