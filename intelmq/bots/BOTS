@@ -983,6 +983,11 @@
                 "pool_size": 10
             }
         },
+        "Norton": {
+            "description": "Norton expert extracts data from Norton Safe Web and adds threat details to the event.",
+            "module": "intelmq.bots.experts.norton.expert",
+            "parameters": {}
+        },
         "Rbl Check": {
             "description": "Rbl extracts data from source/destination and add it to the event.",
             "module": "intelmq.bots.experts.rblcheck.expert",
