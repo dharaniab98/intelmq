@@ -506,6 +506,20 @@
                 "error_log_message": false
             }
         },
+        "HTML Table": {
+            "description": "HTML Table Parser is a bot configurable to parse different html table data.",
+            "module": "intelmq.bots.parsers.html_table.parser",
+            "parameters": {
+                "columns": [
+                    "",
+                    "source.fqdn"
+                ],
+		"table_index": 0,
+                "skip_table_head": true,
+                "time_format": null,
+                "type": "c&c"
+            }
+        },
         "Iot Malware": {
             "description": "Iot Malware parser parses futex.re json data",
             "module": "intelmq.bots.parsers.iotmalware.parser",
