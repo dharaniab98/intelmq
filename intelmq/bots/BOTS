@@ -552,6 +552,11 @@
             "module": "intelmq.bots.parsers.malekal.parser",
             "parameters": {}
         },
+        "Malshare API":{
+                "description":"Malshare API parser is the bot responsible to parse the report and sanitize the information.",
+                "module": "intelmq.bots.parsers.malshare_api.parser",
+                "parameters": {}
+        },
 	"Malshare":{
 		"description":"Malshare parser is the bot responsible to parse the report and sanitize the information.",
 		"module": "intelmq.bots.parsers.malshare.parser",
