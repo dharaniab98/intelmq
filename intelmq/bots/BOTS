@@ -920,6 +920,21 @@
                 "service_url": "http://127.0.0.1:5000/gglsbl/lookup/"
             }
         },
+        "HTML Table": {
+            "description": "HTML Table Expert is a bot configurable to parse different html table data and add it to event.",
+            "module": "intelmq.bots.experts.html_table.expert",
+            "parameters": {
+                "url_format": "",
+                "url_param": "source.ip|source.fqdn",
+                "columns": [
+                    "",
+                    "source.fqdn"
+                ],
+                "table_index": 0,
+                "skip_table_head": true,
+                "time_format": null
+            }
+        },
         "Add Hash": {
             "description": "Hash is the bot responsible for adding hash of message to message if it is not present.",
             "module": "intelmq.bots.experts.hash.expert",
