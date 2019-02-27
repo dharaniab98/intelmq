@@ -28,7 +28,7 @@ class AddTimeExpertBot(Bot):
                     except:
                         pass
             if isinstance(extra, Mapping):
-                extra[self.field_name] = now_time
+                event.add('extra.{}'.format(self.field_name), now_time)
             # oddity existing extra value is string and we dont know the key
             # how do we handle this?
             else:
@@ -36,7 +36,7 @@ class AddTimeExpertBot(Bot):
                             "extra": extra,
                             self.field_name: now_time
                         }
-            event.change('extra',extra)
+                event.change('extra',extra)
 
         else: # no extra add extra
             event.add('extra',{self.field_name: now_time})

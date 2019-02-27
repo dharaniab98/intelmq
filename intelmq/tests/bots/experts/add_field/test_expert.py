@@ -29,6 +29,20 @@ EXAMPLE_INPUT4 = {"__type": "Event",
                   "extra.tags": "malware",
                   "feed.name": "test-feed-4"}
 
+EXAMPLE_INPUT5 = {"__type": "Event",
+                  "classification.type": "malware",
+                  "extra.tags": "None",
+                  "extra.urlhaus.threat_type": "malware_download",
+                  "extra.urlhause_link": "https://urlhaus.abuse.ch/url/122336/",
+                  "feed.accuracy": 100.0,
+                  "feed.name": "urlhaus",
+                  "feed.provider": "abuse.ch",
+                  "feed.url": "https://urlhaus.abuse.ch/downloads/csv/",
+                  "source.url": "http://mat-bansgh.com/DE/YZFCRSAWKE1998409/Bestellungen/RECH/",
+                  "status": "online",
+                  "time.observation": "2019-02-12T10:43:47+00:00",
+                  "time.source": "2019-02-12T10:33:05+00:00"}
+
 EXAMPLE_OUTPUT1 = {'__type': 'Event',
                    'classification.type': 'malware',
                    'time.observation': '2018-07-27T00:00:00+00:00',
@@ -56,6 +70,21 @@ EXAMPLE_OUTPUT4 = {"__type": "Event",
                    "malware.name": "zeus",
                    "extra.tags": "malware",
                    "feed.name": "test-feed-4"}
+
+EXAMPLE_OUTPUT5 = {"__type": "Event",
+                   "classification.type": "malware",
+                   "extra.tags": "None",
+                   "extra.urlhaus.threat_type": "malware_download",
+                   "extra.urlhause_link": "https://urlhaus.abuse.ch/url/122336/",
+                   "feed.accuracy": 100.0,
+                   "feed.name": "urlhaus",
+                   "feed.provider": "abuse.ch",
+                   "feed.url": "https://urlhaus.abuse.ch/downloads/csv/",
+                   "source.url": "http://mat-bansgh.com/DE/YZFCRSAWKE1998409/Bestellungen/RECH/",
+                   "status": "online",
+                   "time.observation": "2019-02-12T10:43:47+00:00",
+                   "time.source": "2019-02-12T10:33:05+00:00",
+                   "extra.new_feed": "yes"}
 
 
 class TestAddFieldExpertBot(test.BotTestCase, unittest.TestCase):
@@ -90,6 +119,12 @@ class TestAddFieldExpertBot(test.BotTestCase, unittest.TestCase):
         self.sysconfig = {'field-name': 'malware.name', 'field-value': 'zeus', 'add_to_extra': False}
         self.run_bot()
         self.assertMessageEqual(0, EXAMPLE_OUTPUT4)
+
+    def test_event_extra_mapping(self):
+        self.input_message = EXAMPLE_INPUT5
+        self.sysconfig = {'field-name': 'new_feed', 'field-value': 'yes', 'add_to_extra': True}
+        self.run_bot()
+        self.assertMessageEqual(0, EXAMPLE_OUTPUT5)
 
 
 if __name__ == '__main__':  # pragma: no cover
