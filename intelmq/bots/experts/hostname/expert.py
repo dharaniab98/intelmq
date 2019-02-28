@@ -30,16 +30,17 @@ class HostnameExpertBot(Bot):
                     except:
                         pass
             if isinstance(extra, Mapping):
-                extra['hostname'] = self.hostname
+                event.add('extra.hostname', self.hostname)
             # oddity existing extra value is string and we dont know the key
             # how do we handle this?
             else:
                 extra = {"extra": extra,
                          "hostname": self.hostname}
-            event.change('extra', extra)
+                event.change('extra', extra)
 
         else:   # no extra add extra
             event.add('extra', {self.field_name: self.hostname})
+
         self.send_message(event)
         self.acknowledge_message()
 
