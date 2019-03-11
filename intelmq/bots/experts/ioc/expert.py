@@ -39,8 +39,7 @@ class IOCExpertBot(Bot):
                     extra = json.loads(extra)
                 except:
                     pass
-            extra['ioc_types'] = list(ioc_types)
-            event.change('extra', extra)
+            event.add('extra.ioc_types', list(ioc_types))
         else:
             event.add('extra', {'ioc_types': list(ioc_types)})
         self.send_message(event)
