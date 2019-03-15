@@ -1081,6 +1081,11 @@
                 "lifetime": 3
             }
         },
+        "Talos": {
+            "description": "Talos Expert is the bot responsible for adding extra_tags using Talos Intelligence to the event.",
+            "module": "intelmq.bots.experts.talos.expert",
+            "parameters": {}
+        },
         "Taxonomy": {
             "description": "Taxonomy is the bot responsible to apply the eCSIRT Taxonomy to all events.",
             "module": "intelmq.bots.experts.taxonomy.expert",
