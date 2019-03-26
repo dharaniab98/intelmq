@@ -17,58 +17,58 @@ with open(os.path.join(os.path.dirname(__file__), 'test_scanners.data')) as hand
 
 REPORT1 = {"__type": "Report",
            "feed.name": "Guardicore Top Attackers IP Feed",
-           "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_attackers.js",
+           "feed.url": "https://threatintelligence.guardicore.com/code/data/top_attackers.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA1),
-           "time.observation": "2019-01-05T00:00:00+00:00"
+           "time.observation": "2019-03-26T00:00:00+00:00"
            }
 REPORT2 = {"__type": "Report",
            "feed.name": "Guardicore Malicious Domains Feed",
-           "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_domains.js",
+           "feed.url": "https://threatintelligence.guardicore.com/code/data/malicious_domains.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA2),
-           "time.observation": "2019-01-05T00:00:00+00:00"
+           "time.observation": "2019-03-26T00:00:00+00:00"
            }
 REPORT3 = {"__type": "Report",
            "feed.name": "Guardicore Botnet IP Feed",
-           "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_cc.js",
+           "feed.url": "https://threatintelligence.guardicore.com/code/data/malicious_cc.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA3),
-           "time.observation": "2019-01-05T00:00:00+00:00"
+           "time.observation": "2019-03-26T00:00:00+00:00"
            }
 REPORT4 = {"__type": "Report",
            "feed.name": "Guardicore Scanner IP Feed",
-           "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_scanners.js",
+           "feed.url": "https://threatintelligence.guardicore.com/code/data/top_scanners.js",
            "feed.provider": "guardicore.com",
            "raw": utils.base64_encode(REPORT_DATA4),
-           "time.observation": "2019-01-05T00:00:00+00:00"
+           "time.observation": "2019-03-26T00:00:00+00:00"
            }
 
 
 EVENT1 = {"feed.name": "Guardicore Top Attackers IP Feed",
-          "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_attackers.js",
+          "feed.url": "https://threatintelligence.guardicore.com/code/data/top_attackers.js",
           "feed.provider": "guardicore.com",
-          "time.observation": "2019-01-05T00:00:00+00:00",
+          "time.observation": "2019-03-26T00:00:00+00:00",
           "__type": "Event",
           "classification.type": "malware",
-          "source.ip": "31.30.120.136",
-          "raw": "MzEuMzAuMTIwLjEzNg=="
+          "source.ip": "157.230.189.193",
+          "raw": "MTU3LjIzMC4xODkuMTkz"
           }
 
 EVENT2 = {"feed.name": "Guardicore Malicious Domains Feed",
-          "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_domains.js",
+          "feed.url": "https://threatintelligence.guardicore.com/code/data/malicious_domains.js",
           "feed.provider": "guardicore.com",
-          "time.observation": "2019-01-05T00:00:00+00:00",
+          "time.observation": "2019-03-26T00:00:00+00:00",
           "__type": "Event",
           "classification.type": "malware",
-          "source.fqdn": "pillsonline.eu",
-          "raw": "cGlsbHNvbmxpbmUuZXU="
+          "source.fqdn": "ip-54-37-70.eu",
+          "raw": "aXAtNTQtMzctNzAuZXU="
           }
 
 EVENT3 = {"feed.name": "Guardicore Botnet IP Feed",
-          "feed.url": "https://www.guardicore.com/threatfeed/code/data/malicious_cc.js",
+          "feed.url": "https://threatintelligence.guardicore.com/code/data/malicious_cc.js",
           "feed.provider": "guardicore.com",
-          "time.observation": "2019-01-05T00:00:00+00:00",
+          "time.observation": "2019-03-26T00:00:00+00:00",
           "__type": "Event",
           "classification.type": "c&c",
           "source.ip": "60.2.251.85",
@@ -76,13 +76,13 @@ EVENT3 = {"feed.name": "Guardicore Botnet IP Feed",
           }
 
 EVENT4 = {"feed.name": "Guardicore Scanner IP Feed",
-          "feed.url": "https://www.guardicore.com/threatfeed/code/data/top_scanners.js",
+          "feed.url": "https://threatintelligence.guardicore.com/code/data/top_scanners.js",
           "feed.provider": "guardicore.com",
-          "time.observation": "2019-01-05T00:00:00+00:00",
+          "time.observation": "2019-03-26T00:00:00+00:00",
           "__type": "Event",
           "classification.type": "scanner",
-          "source.ip": "195.3.147.49",
-          "raw": "MTk1LjMuMTQ3LjQ5"
+          "source.ip": "141.98.81.100",
+          "raw": "MTQxLjk4LjgxLjEwMA=="
           }
 
 
