@@ -970,6 +970,11 @@
                 "lookup_type": "<Hash|DestSocket|DestIP|DestFQDN>"
             }
         },
+        "Mcafee TrustedSource Expert": {
+            "description": "Adds extra.mcafee_categorization and extra.mcafee_reputation to the event.",
+            "module": "intelmq.bots.experts.mcafee_trustedsource.expert",
+            "parameters": {}
+        },
         "MaxMind GeoIP": {
             "description": "MaxMind GeoIP is the bot responsible for adding geolocation information to events (Country, City, Longitude, Latitude, etc..)",
             "module": "intelmq.bots.experts.maxmind_geoip.expert",
