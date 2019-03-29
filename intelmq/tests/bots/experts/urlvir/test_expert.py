@@ -35,15 +35,13 @@ EXAMPLE_OUTPUT = {"__type": "Event",
                   "source.ip": "185.18.196.224",
                   "source.url": "http://puertascuesta.com/nN5xhDQABfx/",
                   "status": "Active",
-                  "time.source": "2019-02-05T18:30:00+00:00",
+                  "time.source": "2019-02-06T00:00:00+00:00",
                   "event_description.url": "http://www.urlvir.com/search-host/puertascuesta.com/"
                   }
 EXAMPLE_OUTPUT1 = {"__type": "Event",
                    "feed.url": "http://www.urlvir.com/export-hosts/",
-                   "malware.hash.md5": "84a944b2eb27d60264697a641898281f",
-                   "source.url": "http://134.209.117.229/bins/air.arm",
-                   "status": "Active",
-                   "time.source": "2019-03-18T18:30:00+00:00",
+                   "status": "Inactive",
+                   "time.source": "2019-03-19T00:00:00+00:00",
                    "source.ip": "134.209.117.229",
                    "event_description.url": "http://www.urlvir.com/search-ip-address/134.209.117.229/"
                    }
@@ -53,14 +51,14 @@ EXAMPLE_OUTPUT2 = {"__type": "Event",
                    "source.ip": "67.220.184.146",
                    "source.url": "http://www.akpeugono.com/joomla30/6kqxd-xk24dk-kcor.view/",
                    "status": "Active",
-                   "time.source": "2019-03-08T18:30:00+00:00",
+                   "time.source": "2019-03-09T00:00:00+00:00",
                    "source.fqdn": "akpeugono.com",
                    "event_description.url": "http://www.urlvir.com/search-host/akpeugono.com/"
                    }
 EXAMPLE_OUTPUT3 = {"__type": "Event",
                    "feed.url": "http://www.urlvir.com/export-hosts/",
                    "status": "Inactive",
-                   "time.source": "2018-12-31T18:30:00+00:00",
+                   "time.source": "2019-01-01T00:00:00+00:00",
                    "source.ip": "92.63.197.143",
                    "event_description.url": "http://www.urlvir.com/search-ip-address/92.63.197.143/"
                    }
