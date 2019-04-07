@@ -920,6 +920,11 @@
                 "service_url": "http://127.0.0.1:5000/gglsbl/lookup/"
             }
         },
+        "Guardicore": {
+            "description": "Guardicore Expert bot is the bot responsible to parse tags and connect back servers from Guardicore.",
+            "module": "intelmq.bots.experts.guardicore.expert",
+            "parameters": {}
+        },
         "HTML Table": {
             "description": "HTML Table Expert is a bot configurable to parse different html table data and add it to event.",
             "module": "intelmq.bots.experts.html_table.expert",
