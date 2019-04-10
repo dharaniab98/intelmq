@@ -800,6 +800,11 @@
                 "database": "/opt/intelmq/var/lib/bots/asn_lookup/ipasn.dat"
             }
         },
+	"Abuse.ch ZeuS Tracker": {
+            "description": "Abuse.ch Zeus Tracker is the bot responsible to add ZeuS configs, ZeuS binaries, ZeuS dropzones from ZeuS Tracker to the event.",
+            "module": "intelmq.bots.experts.abusech.expert_zeus",
+            "parameters": {}
+        },
         "Abusix": {
             "description": "Abusix is the bot responsible to get the correspondent abuse contact from source IP and destination IP of the events.",
             "module": "intelmq.bots.experts.abusix.expert",
