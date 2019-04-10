@@ -6,10 +6,7 @@ Testing AbusechZeuSExpertBot.
 import unittest
 import json
 
-from pkg_resources import resource_filename
-
 import intelmq.lib.test as test
-from intelmq.lib.utils import load_configuration
 from intelmq.bots.experts.abusech.expert_zeus import AbusechZeuSExpertBot
 
 
@@ -28,7 +25,7 @@ EXAMPLE_OUTPUT = {'__type': 'Event',
 
 class TestAbusechZeuSExpertBot(test.BotTestCase, unittest.TestCase):
     """
-    A TestCase for AbusechZeuSTrackerExpert.
+    A TestCase for AbusechZeuSExpert.
     """
 
     @classmethod

@@ -17,7 +17,8 @@ class AbusechZeuSExpertBot(Bot):
             host = event.get("source.ip")
         web_text = requests.get('https://zeustracker.abuse.ch/monitor.php?host=' + host).text
         web_soup = bs(web_text, 'html.parser')
-        if 'not found' in web_soup.find(attrs={"class": "ContentBox"}).find('p').text:
+        nf_str = host + ' was not found'
+        if nf_str in web_soup.find(attrs={"class": "ContentBox"}).find('p').text:
             self.send_message(event)
         else:
             tables = web_soup.find_all('table')
