@@ -44,7 +44,7 @@ class GuardicoreExpertBot(Bot):
                                 servers.append(server.text)
                 if not ip:
                     ip_add = table[1].find("tr").find_all('td')[1].text.strip()
-                    event.add("source.ip", ip_add)
+                    event.add("source.ip", ip_add, raise_failure=False)
                 if tags:
                     event.add("extra.tags", tags)
                 if ports:
