@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import re
 import yaml
 from datetime import datetime as dt, timedelta
 
@@ -31,7 +32,9 @@ class GuardicoreParserBot(Bot):
             for feed in feeds:
                 event = self.new_event(report)
                 event.add('classification.type', feed_type)
-                if field == 'mal_domains':
+
+                regex = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
+                if !regex.match(feed):
                     event.add('source.fqdn', feed)
                 else:
                     event.add('source.ip', feed)
