@@ -31,10 +31,8 @@ class GuardicoreParserBot(Bot):
             for feed in feeds:
                 event = self.new_event(report)
                 event.add('classification.type', feed_type)
-                if field == 'mal_domains':
+                if not event.add('source.ip', feed, raise_failure=False):
                     event.add('source.fqdn', feed)
-                else:
-                    event.add('source.ip', feed)
                 event.add('raw', feed)
                 self.send_message(event)
         self.acknowledge_message()
