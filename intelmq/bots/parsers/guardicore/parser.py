@@ -13,16 +13,16 @@ FEEDS = {'https://threatintelligence.guardicore.com/code/data/top_attackers.js':
 
 
 class GuardicoreParserBot(Bot):
-    def init(self):
-        now = dt.now()
-        first_day = now - timedelta(now.isoweekday())
-        ref_day = dt.strptime('2018-04-08', '%Y-%m-%d')
-        self.index = str((first_day - ref_day).days // 7)
 
     def process(self):
         report = self.receive_message()
         raw_report = utils.base64_decode(report["raw"])
         field, feed_type = FEEDS[report["feed.url"]]
+
+        now = dt.now()
+        first_day = now - timedelta(now.isoweekday())
+        ref_day = dt.strptime('2018-04-08', '%Y-%m-%d')
+        self.index = str((first_day - ref_day).days // 7)
 
         data = raw_report.split(field + ' =')[-1]
         feeds_data = yaml.load(data)
