@@ -609,6 +609,11 @@
             "module": "intelmq.bots.parsers.microsoft.parser_ctip",
             "parameters": {}
         },
+        "Mrlooquer": {
+            "description": "Mrlooquer Parser is the bot responsible to parse the reports and sanitize the information.",
+            "module": "intelmq.bots.parsers.mrlooquer.parser",
+            "parameters": {}
+        },
         "N6Stomp": {
             "description": "N6 Collector - CERT.pl's N6 Parser - N6 feed via STOMP interface",
             "module": "intelmq.bots.parsers.n6.parser_n6stomp",
