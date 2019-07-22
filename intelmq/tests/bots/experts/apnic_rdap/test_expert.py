@@ -53,8 +53,6 @@ class TestAPNICExpertBot(test.BotTestCase, unittest.TestCase):
     def set_bot(cls):
         cls.bot_reference = APNICExpertBot
         cls.use_cache = True
-        cls.sysconfig = {"pool_size": 10}
-
     def test_ipv4_lookup(self):
         self.input_message = EXAMPLE_INPUT
         self.run_bot()

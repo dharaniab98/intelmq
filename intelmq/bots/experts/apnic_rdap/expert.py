@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
 
-import gevent
-from gevent import socket
-from gevent.pool import Pool
-import gevent.monkey
-
 from intelmq.bots.experts.apnic_rdap.lib import APNIC
 from intelmq.lib.bot import Bot
 from intelmq.lib.cache import Cache
 from intelmq.lib.harmonization import IPAddress
-
-gevent.monkey.patch_socket()
 
 MINIMUM_BGP_PREFIX_IPV4 = 24
 MINIMUM_BGP_PREFIX_IPV6 = 128
@@ -27,12 +20,8 @@ class APNICExpertBot(Bot):
                            getattr(self.parameters, "redis_cache_password",
                                    None)
                            )
-        self.pool = Pool(self.parameters.pool_size)
 
     def process(self):
-        self.pool.spawn(self._process)
-
-    def _process(self):
         event = self.receive_message()
 
         keys = ["source.%s", "destination.%s"]
