@@ -830,6 +830,18 @@
                 "add_to_extra": true
              }
         },
+	"APNIC RDAP": {
+            "description": "APNIC RDAP is the bot responsible to add abuse contact to the events.",
+            "module": "intelmq.bots.experts.apnic_rdap.expert",
+            "parameters": {
+                "redis_cache_db": "6",
+                "redis_cache_host": "127.0.0.1",
+                "redis_cache_port": "6379",
+                "redis_cache_password": null,
+                "redis_cache_ttl": "86400",
+                "pool_size": 10
+            }
+        },
         "CERT.at Contact Database": {
             "description": "Cert.at Contact Database is the bot responsible to get CERT. Set filter to true if you want to filter out events for cert.at. Set add_cc to true if you want to overwrite an existing CC value.",
             "module": "intelmq.bots.experts.national_cert_contact_certat.expert",
