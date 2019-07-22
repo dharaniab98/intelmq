@@ -24,12 +24,22 @@ class APNIC():
 
         if "errorCode" not in data:
             for entity in data['entities']:
-                for arr in entity['vcardArray'][1]:
-                    if 'email' in arr:
-                        if 'abuse' in entity['roles'] or 'abuse' in arr[3]:
-                            abuse.add(arr[3])
-                        else:
-                            email.add(arr[3])
+                if 'entities' in entity:
+                    for entity1 in entity['entities']:
+                        for arr in entity1['vcardArray'][1]:
+                            if 'email' in arr:
+                                if 'abuse' in entity['roles'] or 'abuse' in arr[3]:
+                                    abuse.add(arr[3])
+                                else:
+                                    email.add(arr[3])
+
+                else:
+                    for arr in entity['vcardArray'][1]:
+                        if 'email' in arr:
+                            if 'abuse' in entity['roles'] or 'abuse' in arr[3]:
+                                abuse.add(arr[3])
+                            else:
+                                email.add(arr[3])
 
         if abuse:
             result['abuse'] = list(abuse)

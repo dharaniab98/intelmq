@@ -20,6 +20,12 @@ EXAMPLE_INPUT6 = {"__type": "Event",
                   }
 EXAMPLE_OUTPUT6 = {"__type": "Event",
                    "destination.ip": "2001:500:88:200::8",
+                   "extra.email": ["terry.manderson@icann.org",
+                                   "darren.kara@icann.org",
+                                   "josh.jenkins@icann.org",
+                                   "david.soltero@icann.org",
+                                   "david.closson@icann.org",
+                                   "ops@icann.org"],
                    "time.observation": "2019-01-01T00:00:00+00:00",
                    }
 EXAMPLE_NETWORK_INPUT = {"__type": "Event",
