@@ -810,6 +810,11 @@
             "module": "intelmq.bots.experts.abusech.expert_zeus",
             "parameters": {}
         },
+        "Abuse.ch URLhaus API": {
+            "description": "Abuse.ch URLhaus API Expert is the bot responsible to add url information from URLhaus to the event.",
+            "module": "intelmq.bots.experts.abusech.expert_urlhaus",
+            "parameters": {}
+        },
         "Abusix": {
             "description": "Abusix is the bot responsible to get the correspondent abuse contact from source IP and destination IP of the events.",
             "module": "intelmq.bots.experts.abusix.expert",
