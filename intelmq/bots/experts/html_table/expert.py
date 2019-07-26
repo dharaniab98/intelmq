@@ -34,9 +34,10 @@ TIME_CONVERSIONS = {'timestamp': DateTime.from_timestamp,
 class HTMLTableExpertBot(Bot):
 
     def init(self):
+        self.set_request_parameters()
         self.url_param = self.parameters.url_param
         self.columns = self.parameters.columns
-        self.header = getattr(self.parameters, "http_header", ())
+
         # convert columns to an array
         if type(self.columns) is str:
             self.columns = [column.strip() for column in self.columns.split(",")]
@@ -67,56 +68,72 @@ class HTMLTableExpertBot(Bot):
                 url = self.parameters.url_format % (event[param])
                 break
 
-        report = requests.get(url=url, headers=self.header).text
-        soup = bs(report, 'html.parser')
-        if self.attr_name is not None:
-            table = soup.find_all('table', attrs={self.attr_name: self.attr_value})
-        else:
-            table = soup.find_all('table')
+        timeoutretries = 0
+        resp = None
 
-        if len(table) > self.table_index:
-            table = table[self.table_index]
-            row = table.find_all('tr')[self.skip_row:]
+        while timeoutretries < self.http_timeout_max_tries and resp is None:
+            try:
+                resp = requests.get(url=url, auth=self.auth,
+                                    proxies=self.proxy, headers=self.http_header,
+                                    verify=self.http_verify_cert,
+                                    cert=self.ssl_client_cert,
+                                    timeout=self.http_timeout_sec)
 
-            for feed in row:
+            except requests.exceptions.Timeout:
+                timeoutretries += 1
 
-                tdata = [data.text for data in feed.find_all('td')]
-
-                for key, data, ignore_value in zip(self.columns, tdata, self.ignore_values):
-                    keys = key.split('|') if '|' in key else [key, ]
-                    data = data.strip()
-                    if data == ignore_value:
-                        continue
-                    for key in keys:
-                        if isinstance(data, str) and not data:  # empty string is never valid
-                            break
-
-                        if key in ["__IGNORE__", ""]:
-                            break
-
-                        if self.split_column and key == self.split_column:
-                            data = data.split(self.split_separator)[int(self.split_index)]
-                            data = data.strip()
-
-                        if key in ["time.source", "time.destination"]:
-                            try:
-                                data = int(data)
-                            except:
-                                pass
-                            data = TIME_CONVERSIONS[self.time_format](data)
-
-                        elif key.endswith('.url'):
-                            if not data:
-                                continue
-                            if '://' not in data:
-                                data = self.parameters.default_url_protocol + data
-
-                        if event.add(key, data, overwrite=True, raise_failure=False):
-                            break
-
-                self.send_message(event)
-        else:
+        if resp.status_code // 100 != 2 or not resp.text:
             self.send_message(event)
+        else:
+            soup = bs(resp.text, 'html.parser')
+            if self.attr_name is not None:
+                table = soup.find_all('table', attrs={self.attr_name: self.attr_value})
+            else:
+                table = soup.find_all('table')
+
+            if len(table) > self.table_index:
+                table = table[self.table_index]
+                row = table.find_all('tr')[self.skip_row:]
+
+                for feed in row:
+
+                    tdata = [data.text for data in feed.find_all('td')]
+
+                    for key, data, ignore_value in zip(self.columns, tdata, self.ignore_values):
+                        keys = key.split('|') if '|' in key else [key, ]
+                        data = data.strip()
+                        if data == ignore_value:
+                            continue
+                        for key in keys:
+                            if isinstance(data, str) and not data:  # empty string is never valid
+                                break
+
+                            if key in ["__IGNORE__", ""]:
+                                break
+
+                            if self.split_column and key == self.split_column:
+                                data = data.split(self.split_separator)[int(self.split_index)]
+                                data = data.strip()
+
+                            if key in ["time.source", "time.destination"]:
+                                try:
+                                    data = int(data)
+                                except:
+                                    pass
+                                data = TIME_CONVERSIONS[self.time_format](data)
+
+                            elif key.endswith('.url'):
+                                if not data:
+                                    continue
+                                if '://' not in data:
+                                    data = self.parameters.default_url_protocol + data
+
+                            if event.add(key, data, overwrite=True, raise_failure=False):
+                                break
+
+                    self.send_message(event)
+            else:
+                self.send_message(event)
         self.acknowledge_message()
 
 
