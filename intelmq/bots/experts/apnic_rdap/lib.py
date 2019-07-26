@@ -22,7 +22,7 @@ class APNIC():
         abuse = set()
         email = set()
 
-        if "errorCode" not in data:
+        if "errorCode" not in data and "entities" in data:
             for entity in data['entities']:
                 if 'entities' in entity:
                     for entity1 in entity['entities']:
