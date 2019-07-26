@@ -34,9 +34,10 @@ TIME_CONVERSIONS = {'timestamp': DateTime.from_timestamp,
 class HTMLTableExpertBot(Bot):
 
     def init(self):
+        self.set_request_parameters()
         self.url_param = self.parameters.url_param
         self.columns = self.parameters.columns
-        self.header = getattr(self.parameters, "http_header", ())
+
         # convert columns to an array
         if type(self.columns) is str:
             self.columns = [column.strip() for column in self.columns.split(",")]
@@ -67,8 +68,30 @@ class HTMLTableExpertBot(Bot):
                 url = self.parameters.url_format % (event[param])
                 break
 
-        report = requests.get(url=url, headers=self.header).text
-        soup = bs(report, 'html.parser')
+        timeoutretries = 0
+        resp = None
+
+        while timeoutretries < self.http_timeout_max_tries and resp is None:
+            try:
+                resp = requests.get(url=url, auth=self.auth,
+                                    proxies=self.proxy, headers=self.http_header,
+                                    verify=self.http_verify_cert,
+                                    cert=self.ssl_client_cert,
+                                    timeout=self.http_timeout_sec)
+
+            except requests.exceptions.Timeout:
+                timeoutretries += 1
+                self.logger.warn("Timeout whilst downloading the report.")
+
+        if resp is None and timeoutretries >= self.http_timeout_max_tries:
+            self.logger.error("Request timed out %i times in a row.",
+                              timeoutretries)
+            return
+
+        if resp.status_code // 100 != 2:
+            raise ValueError('HTTP response status code was %i.' % resp.status_code)
+
+        soup = bs(resp.text, 'html.parser')
         if self.attr_name is not None:
             table = soup.find_all('table', attrs={self.attr_name: self.attr_value})
         else:
