@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Testing AbusechURLhausAPIExpertBot.
+Testing AbusechURLhausExpertBot.
 """
 
 import unittest
 
 import intelmq.lib.test as test
-from intelmq.bots.experts.abusech.expert_urlhaus import AbusechURLhausAPIExpertBot
+from intelmq.bots.experts.abusech.expert_urlhaus import AbusechURLhausExpertBot
 
 
 EXAMPLE_INPUT = {"__type": "Event",
@@ -27,14 +27,14 @@ EXAMPLE_OUTPUT = {"__type": "Event",
                   }
 
 
-class TestAbusechURLhausAPIExpertBot(test.BotTestCase, unittest.TestCase):
+class TestAbusechURLhausExpertBot(test.BotTestCase, unittest.TestCase):
     """
-    A TestCase for AbusechURLhausAPIExpertBot.
+    A TestCase for AbusechURLhausExpertBot.
     """
 
     @classmethod
     def set_bot(cls):
-        cls.bot_reference = AbusechURLhausAPIExpertBot
+        cls.bot_reference = AbusechURLhausExpertBot
 
     def test_event(self):
         self.input_message = EXAMPLE_INPUT

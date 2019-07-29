@@ -6,7 +6,7 @@ import requests
 from intelmq.lib.bot import Bot
 
 
-class AbusechURLhausAPIExpertBot(Bot):
+class AbusechURLhausExpertBot(Bot):
     def init(self):
         self.set_request_parameters()
 
@@ -22,10 +22,10 @@ class AbusechURLhausAPIExpertBot(Bot):
         while timeoutretries < self.http_timeout_max_tries and resp is None:
             try:
                 resp = requests.post(url=post_url, data=data, auth=self.auth,
-                                    proxies=self.proxy, headers=self.http_header,
-                                    verify=self.http_verify_cert,
-                                    cert=self.ssl_client_cert,
-                                    timeout=self.http_timeout_sec)
+                                     proxies=self.proxy, headers=self.http_header,
+                                     verify=self.http_verify_cert,
+                                     cert=self.ssl_client_cert,
+                                     timeout=self.http_timeout_sec)
 
             except requests.exceptions.Timeout:
                 timeoutretries += 1
@@ -52,4 +52,4 @@ class AbusechURLhausAPIExpertBot(Bot):
         self.acknowledge_message()
 
 
-BOT = AbusechURLhausAPIExpertBot
+BOT = AbusechURLhausExpertBot
