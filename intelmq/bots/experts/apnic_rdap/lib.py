@@ -10,14 +10,20 @@ class APNIC():
 
     @staticmethod
     def query(query_str):
-        text = requests.get(QUERY % (query_str)).text
 
         result = {}
+        try:
+            text = requests.get(QUERY % (query_str)).text
+        except:         # Too many redirects error
+            return result
 
         if not text:
             return result
 
-        data = json.loads(text)
+        try:
+            data = json.loads(text)
+        except:         # Not Found or json loads error
+            return result
 
         abuse = set()
         email = set()
