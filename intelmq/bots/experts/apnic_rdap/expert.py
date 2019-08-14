@@ -54,15 +54,10 @@ class APNICExpertBot(Bot):
                 raise ValueError('Unexpected IP version '
                                  '{!r}.'.format(ip_version))
 
-            if ip_key in event and network_key in event:
+            if network_key in event:
+                cache_key = bin(ip_integer)[2: minimum + 2] + bin(prefix)[2:]
+            elif ip_key in event:
                 cache_key = bin(ip_integer)[2: minimum + 2]
-                query_str = event.get(ip_key)
-            else:
-                if ip_key in event:
-                    cache_key = bin(ip_integer)[2: minimum + 2]
-
-                if network_key in event:
-                    cache_key = bin(ip_integer)[2: minimum + 2] + bin(prefix)[2:]
 
             result_json = self.cache.get(cache_key)
 
