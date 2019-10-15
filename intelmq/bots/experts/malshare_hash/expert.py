@@ -30,8 +30,8 @@ class MalshareHashExpertBot(Bot):
                         event.add('extra.yara_rules', yara_rules)
                 elif 'Source' in table.find('th').text:
                     for urls in table.find_all('td'):
-                        event.add('source.url', urls.text, overwrite=True)
-                        self.send_message(event)
+                        if event.add('source.url', urls.text, overwrite=True, raise_failure=False):
+                            self.send_message(event)
             if event.get('source.url') is None:
                 self.send_message(event)
         else:

@@ -35,7 +35,7 @@ class APNIC():
                         if 'vcardArray' in entity1:
                             for arr in entity1['vcardArray'][1]:
                                 if 'email' in arr:
-                                    if 'abuse' in entity['roles'] or 'abuse' in arr[3]:
+                                    if 'abuse' in entity1['roles'] or 'abuse' in arr[3]:
                                         abuse.add(arr[3])
                                     else:
                                         email.add(arr[3])
