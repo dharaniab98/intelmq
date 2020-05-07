@@ -6,7 +6,7 @@ from datetime import datetime
 from intelmq.lib import utils
 from intelmq.lib.bot import ParserBot
 
-SOURCE_FEEDS = {'https://precisionsec.com/threat-intelligence-feeds/agent-tesla': 'agent-tesla',
+SOURCE_FEEDS = {'https://precisionsec.com/threat-intelligence-feeds/agenttesla': 'agent-tesla',
                 'https://precisionsec.com/threat-intelligence-feeds/emotet': 'emotet',
                 'https://precisionsec.com/threat-intelligence-feeds/gandcrab': 'gandcrab',
                 'https://precisionsec.com/threat-intelligence-feeds/njrat': 'njrat',

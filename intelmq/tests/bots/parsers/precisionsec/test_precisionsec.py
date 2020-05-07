@@ -10,12 +10,12 @@ with open(os.path.join(os.path.dirname(__file__), 'test_precisionsec.data')) as 
     REPORT_DATA = handle.read()
 
 REPORT = {"__type": "Report",
-          "feed.url": "https://precisionsec.com/threat-intelligence-feeds/agent-tesla",
+          "feed.url": "https://precisionsec.com/threat-intelligence-feeds/agenttesla",
           "raw": utils.base64_encode(REPORT_DATA),
           }
 
 EVENT = {"__type": "Event",
-         "feed.url": "https://precisionsec.com/threat-intelligence-feeds/agent-tesla",
+         "feed.url": "https://precisionsec.com/threat-intelligence-feeds/agenttesla",
          "malware.name": "agent-tesla",
          "classification.type": "malware",
          "source.url": "http://www.ryanmotors.co/banners/obm/obm.exe",
