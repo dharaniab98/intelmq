@@ -34,6 +34,10 @@ class FilterExpertBot(Bot):
             self.not_after = self.parse_timeattr(self.parameters.not_after)
         if hasattr(self.parameters, 'not_before'):
             self.not_before = self.parse_timeattr(self.parameters.not_before)
+        if hasattr(self.parameters, 'today_only') and self.parameters.today_only is True:
+            tz = pytz.timezone('UTC')
+            self.not_before = tz.localize(datetime.combine(datetime.today(), datetime.min.time()))
+            self.not_after = tz.localize(datetime.combine(datetime.today(), datetime.max.time()))
 
         self.filter = True
         if not (hasattr(self.parameters, 'filter_key')):
