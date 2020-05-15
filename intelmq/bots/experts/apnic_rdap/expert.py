@@ -20,56 +20,60 @@ class APNICExpertBot(Bot):
                            getattr(self.parameters, "redis_cache_password",
                                    None)
                            )
+        self.bypass = getattr(self.parameters, "bypass", False)
 
     def process(self):
         event = self.receive_message()
 
-        ip_key = "source.ip"
-        network_key = "source.network"
-
-        if ip_key not in event and network_key not in event:
+        if self.bypass:
             self.send_message(event)
         else:
-            if ip_key in event:
-                ip = event.get(ip_key)
-                query_str = ip
+            ip_key = "source.ip"
+            network_key = "source.network"
 
-            if network_key in event:         # network preferred over ip
-                netw = event.get(network_key)
-                ip = netw.split('/')[0]
-                prefix = int(netw.split('/')[1])
-                query_str = netw
-
-            ip_version = IPAddress.version(ip)
-            ip_integer = IPAddress.to_int(ip)
-
-            if ip_version == 4:
-                minimum = MINIMUM_BGP_PREFIX_IPV4
-            elif ip_version == 6:
-                minimum = MINIMUM_BGP_PREFIX_IPV6
+            if ip_key not in event and network_key not in event:
+                self.send_message(event)
             else:
-                raise ValueError('Unexpected IP version '
-                                 '{!r}.'.format(ip_version))
+                if ip_key in event:
+                    ip = event.get(ip_key)
+                    query_str = ip
 
-            if network_key in event:
-                cache_key = bin(ip_integer)[2: minimum + 2] + bin(prefix)[2:]
-            elif ip_key in event:
-                cache_key = bin(ip_integer)[2: minimum + 2]
+                if network_key in event:         # network preferred over ip
+                    netw = event.get(network_key)
+                    ip = netw.split('/')[0]
+                    prefix = int(netw.split('/')[1])
+                    query_str = netw
 
-            result_json = self.cache.get(cache_key)
+                ip_version = IPAddress.version(ip)
+                ip_integer = IPAddress.to_int(ip)
 
-            if result_json:
-                result = json.loads(result_json)
-            else:
-                result = APNIC.query(query_str)
-                if result:
-                    result_json = json.dumps(result)
-                    self.cache.set(cache_key, result_json)
+                if ip_version == 4:
+                    minimum = MINIMUM_BGP_PREFIX_IPV4
+                elif ip_version == 6:
+                    minimum = MINIMUM_BGP_PREFIX_IPV6
+                else:
+                    raise ValueError('Unexpected IP version '
+                                     '{!r}.'.format(ip_version))
 
-            for result_key, result_value in result.items():
-                event.add('extra.%s' % result_key, result_value, overwrite=True)
+                if network_key in event:
+                    cache_key = bin(ip_integer)[2: minimum + 2] + bin(prefix)[2:]
+                elif ip_key in event:
+                    cache_key = bin(ip_integer)[2: minimum + 2]
 
-            self.send_message(event)
+                result_json = self.cache.get(cache_key)
+
+                if result_json:
+                    result = json.loads(result_json)
+                else:
+                    result = APNIC.query(query_str)
+                    if result:
+                        result_json = json.dumps(result)
+                        self.cache.set(cache_key, result_json)
+
+                for result_key, result_value in result.items():
+                    event.add('extra.%s' % result_key, result_value, overwrite=True)
+
+                self.send_message(event)
 
         self.acknowledge_message()
 

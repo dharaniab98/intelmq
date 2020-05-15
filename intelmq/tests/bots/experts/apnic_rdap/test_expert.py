@@ -42,7 +42,14 @@ EMPTY_INPUT = {"__type": "Event",
                "source.ip": "127.0.0.1",  # no result
                "time.observation": "2019-01-01T00:00:00+00:00",
                }
-
+EXAMPLE_BYPASS_INPUT = {"__type": "Event",
+                        "source.ip": "119.152.0.6",
+                        "time.observation": "2020-05-15T00:00:00+00:00",
+                        }
+EXAMPLE_BYPASS_OUTPUT = {"__type": "Event",
+                         "source.ip": "119.152.0.6",
+                         "time.observation": "2020-05-15T00:00:00+00:00",
+                         }
 
 class TestAPNICExpertBot(test.BotTestCase, unittest.TestCase):
     """
@@ -73,6 +80,12 @@ class TestAPNICExpertBot(test.BotTestCase, unittest.TestCase):
         self.input_message = EMPTY_INPUT
         self.run_bot()
         self.assertMessageEqual(0, EMPTY_INPUT)
+
+    def test_bypass(self):
+        self.sysconfig = {"bypass": "true"}
+        self.input_message = EXAMPLE_BYPASS_INPUT
+        self.run_bot()
+        self.assertMessageEqual(0, EXAMPLE_BYPASS_OUTPUT)
 
 
 if __name__ == '__main__':  # pragma: no cover
