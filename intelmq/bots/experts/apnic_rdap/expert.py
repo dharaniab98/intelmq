@@ -21,6 +21,7 @@ class APNICExpertBot(Bot):
                                    None)
                            )
         self.bypass = getattr(self.parameters, "bypass", False)
+        self.timeout = self.parameters.http_timeout_sec
 
     def process(self):
         event = self.receive_message()
@@ -65,7 +66,7 @@ class APNICExpertBot(Bot):
                 if result_json:
                     result = json.loads(result_json)
                 else:
-                    result = APNIC.query(query_str)
+                    result = APNIC.query(query_str, self.timeout)
                     if result:
                         result_json = json.dumps(result)
                         self.cache.set(cache_key, result_json)

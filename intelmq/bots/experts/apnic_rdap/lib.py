@@ -9,11 +9,11 @@ QUERY = "http://rdap.apnic.net/ip/%s"
 class APNIC():
 
     @staticmethod
-    def query(query_str):
+    def query(query_str, timeout):
 
         result = {}
         try:
-            text = requests.get(QUERY % (query_str)).text
+            text = requests.get(QUERY % (query_str), timeout=timeout).text
         except:         # Too many redirects error
             return result
 
