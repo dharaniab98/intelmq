@@ -29,15 +29,12 @@ class FilterExpertBot(Bot):
     def init(self):
         self.not_after = None
         self.not_before = None
+        self.today_only = getattr(self.parameters, "today_only", False)
 
         if hasattr(self.parameters, 'not_after'):
             self.not_after = self.parse_timeattr(self.parameters.not_after)
         if hasattr(self.parameters, 'not_before'):
             self.not_before = self.parse_timeattr(self.parameters.not_before)
-        if hasattr(self.parameters, 'today_only') and self.parameters.today_only is True:
-            tz = pytz.timezone('UTC')
-            self.not_before = tz.localize(datetime.combine(datetime.today(), datetime.min.time()))
-            self.not_after = tz.localize(datetime.combine(datetime.today(), datetime.max.time()))
 
         self.filter = True
         if not (hasattr(self.parameters, 'filter_key')):
@@ -59,11 +56,16 @@ class FilterExpertBot(Bot):
         if hasattr(self.parameters, 'filter_regex') and self.parameters.filter_regex:
             self.regex = re.compile(self.parameters.filter_value)
 
-        if not (self.filter or self.not_after is not None or self.not_before is not None):
+        if not (self.filter or self.today_only or self.not_after is not None or self.not_before is not None):
             raise ValueError("No relevant filter configuration found.")
 
     def process(self):
         event = self.receive_message()
+
+        if self.today_only is True:
+            tz = pytz.timezone('UTC')
+            self.not_before = tz.localize(datetime.combine(datetime.today(), datetime.min.time()))
+            self.not_after = tz.localize(datetime.combine(datetime.today(), datetime.max.time()))
 
         # time based filtering
         if 'time.source' in event:
