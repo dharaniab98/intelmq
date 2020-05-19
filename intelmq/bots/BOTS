@@ -340,6 +340,11 @@
             "module": "intelmq.bots.parsers.autoshun.parser",
             "parameters": {}
         },
+        "AZORult Tracker":{
+            "description": "AZORult Tracker Parser is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.azorult_tracker.parser",
+            "parameters": {}
+        },
         "Bambenek": {
             "description": "Bambenek parser is the bot responsible to parse and and sanitize the information from the feeds available from Bambenek.",
             "module": "intelmq.bots.parsers.bambenek.parser",
