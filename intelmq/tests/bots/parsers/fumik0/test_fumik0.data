@@ -1,0 +1,44 @@
+[
+    {
+        "first_seen": "2020-04-22 08:10:03",
+        "hash": {
+            "md5": "9eae0b7cdeee4c07443f80b8bae7e56c",
+            "sha1": "9a8e284bba018192052da78f94554779d52515b2",
+            "sha256": "bd27fe96b334c81e8b62bda3121306619ca317dad8a971daf0639cb896953006"
+        },
+        "hash_seen": 1,
+        "id": "5e9ffbdb7a324f2e75b81b69",
+        "sample": {
+            "name": "fattura.exe",
+            "size": "222720"
+        },
+        "server": {
+            "AS": "AS56577",
+            "country": "bg",
+            "domain": "gstat.bluechipstaffing.com",
+            "ip": "185.68.93.48",
+            "url": "gstat.bluechipstaffing.com/fattura.exe"
+        }
+    },
+    {
+        "first_seen": "2020-04-10 12:00:58",
+        "hash": {
+            "md5": "a63c427f6337e6c0c46d836b3d2ffbb7",
+            "sha1": "5850852e61131eec240a0585ec7e79c0424bb273",
+            "sha256": "3f7326176e42757f5ba6cf0381aecccd81afaaa10d3e6a0a28b3bc440af95acd"
+        },
+        "hash_seen": 1,
+        "id": "5e905ffa7a324f2e602a9fc2",
+        "sample": {
+            "name": "XdlzBPT.exe",
+            "size": "591360"
+        },
+        "server": {
+            "AS": "AS36352",
+            "country": "us",
+            "domain": "no",
+            "ip": "198.12.66.107",
+            "url": "198.12.66.107/XdlzBPT.exe"
+        }
+    }
+]
