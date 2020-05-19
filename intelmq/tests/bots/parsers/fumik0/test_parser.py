@@ -27,7 +27,7 @@ OUTPUT1 = {'__type': 'Event',
            'source.fqdn': 'gstat.bluechipstaffing.com',
            'source.ip': '185.68.93.48',
            'source.url': 'http://gstat.bluechipstaffing.com/fattura.exe',
-           'time.source': '2020-04-22T02:40:03+00:00',
+           'time.source': '2020-04-22T08:10:03+00:00',
            'classification.type': 'malware'}
 
 class TestFumik0ParserBot(test.BotTestCase, unittest.TestCase):

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+from datetime import datetime
 
 from intelmq.lib import utils
 from intelmq.lib.bot import Bot
@@ -20,7 +21,7 @@ class Fumik0ParserBot(Bot):
             event.add('malware.hash.md5', feed['hash']['md5'])
             event.add('malware.hash.sha1', feed['hash']['sha1'])
             event.add('malware.hash.sha256', feed['hash']['sha256'])
-            event.add('time.source', feed['first_seen'])
+            event.add('time.source', datetime.strptime(feed['first_seen'], '%Y-%m-%d %H:%M:%S').isoformat() + "UTC")
             event.add('extra.file_name', feed['sample']['name'])
             event.add('extra.file_size', feed['sample']['size'])
             event.add('source.asn', feed['server']['AS'])
