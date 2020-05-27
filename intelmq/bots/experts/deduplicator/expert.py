@@ -45,6 +45,7 @@ class DeduplicatorExpertBot(Bot):
                             self.parameters.filter_keys.split(',')}
         self.bypass = getattr(self.parameters, "bypass", False)
         self.month_based = getattr(self.parameters, "month_based", False)
+        self.persist_duplicate = getattr(self.parameters, "persist_duplicate", False)
 
     def process(self):
         message = self.receive_message()
@@ -64,6 +65,8 @@ class DeduplicatorExpertBot(Bot):
                     self.cache.set(message_hash, 'hash')
                 self.send_message(message)
             else:
+                if self.persist_duplicate:
+                    self.cache.set(message_hash, 'hash')
                 self.logger.debug('Dropped message.')
 
         self.acknowledge_message()
