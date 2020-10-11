@@ -71,6 +71,7 @@ EVENTS2 = {'__type': 'Event',
            'extra.tags': ['generic'],
            'extra.threat_info': [],
            'feed.name': 'RSTThreats IP Feed',
+           'source.ip': '116.108.249.75',
            'raw': 'eyJpcCI6IHsidjQiOiAiMTE2LjEwOC4yNDkuNzUiLCAibnVtIjogIjE5NTMyOTg3NjMifSwgImZzZWV'
                   'uIjogMTYwMDk5MjAwMCwgImxzZWVuIjogMTYwMTk0MjQwMCwgImNvbGxlY3QiOiAxNjAyMDI4ODAwL'
                   'CAidGFncyI6IHsic3RyIjogWyJnZW5lcmljIl0sICJjb2RlcyI6IFswXX0sICJhc24iOiB7Im51bSI'
@@ -108,7 +109,8 @@ EVENTS3 = {'__type': 'Event',
                   '2YWlsYWJsZSJ9LCAidGhyZWF0IjogW10sICJpZCI6ICI5ODdmNTAzOC0yOThmLTM3ZWItYTFkNS1hMT'
                   'cxMDVmNmI0YjUiLCAidGl0bGUiOiAiUlNUIFRocmVhdCBmZWVkLiBJT0M6IDExNC4yMzQuMTY2LjI1N'
                   'TozOTQzNi9tb3ppLmEiLCAiZGVzY3JpcHRpb24iOiAiSU9DIHdpdGggdGFnczogbWFsd2FyZSJ9',
-           'time.source': '2020-10-06T00:00:00+00:00'
+           'time.source': '2020-10-06T00:00:00+00:00',
+           'source.url': 'http://114.234.166.255:39436/mozi.a'
            }
 
 
@@ -144,11 +146,10 @@ class TestJSONCustomParserBot(test.BotTestCase, unittest.TestCase):
         self.sysconfig = {"splitlines": True,
                           "type": "malware",
                           "time_format": "epoch_millis",
-                          "translate_fields": {"source.fqdn": "domain",
+                          "translate_fields": {"source.ip": "ip.v4",
                                                "time.source": "lseen",
                                                "extra.tags": "tags.str",
-                                               "extra.threat_info": "threat",
-                                               "source.ip": "resolved.ip.a"
+                                               "extra.threat_info": "threat"
                                                }
                           }
         self.run_bot()
@@ -160,11 +161,10 @@ class TestJSONCustomParserBot(test.BotTestCase, unittest.TestCase):
         self.sysconfig = {"splitlines": True,
                           "type": "malware",
                           "time_format": "epoch_millis",
-                          "translate_fields": {"source.fqdn": "domain",
+                          "translate_fields": {"source.url": "url",
                                                "time.source": "lseen",
                                                "extra.tags": "tags.str",
-                                               "extra.threat_info": "threat",
-                                               "source.ip": "resolved.ip.a"
+                                               "extra.threat_info": "threat"
                                                }
                           }
         self.run_bot()
