@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Generic CSV parser
-
 Parameters:
 columns: string
 delimiter: string
@@ -10,7 +9,6 @@ skip_header: boolean
 type: string
 type_translation: string
 data_type: string
-
 """
 import csv
 import io
@@ -21,10 +19,8 @@ from dateutil.parser import parse
 
 from intelmq.lib import utils
 from intelmq.lib.bot import ParserBot
-from intelmq.lib.exceptions import InvalidArgument
+from intelmq.lib.exceptions import InvalidArgument, InvalidValue
 from intelmq.lib.harmonization import DateTime
-import intelmq.lib.exceptions as exceptions
-
 
 TIME_CONVERSIONS = {'timestamp': DateTime.from_timestamp,
                     'windows_nt': DateTime.from_windows_nt,
@@ -32,6 +28,7 @@ TIME_CONVERSIONS = {'timestamp': DateTime.from_timestamp,
                     None: lambda value: parse(value, fuzzy=True).isoformat() + " UTC"}
 
 DATA_CONVERSIONS = {'json': lambda data: json.loads(data)}
+DOCS = "https://intelmq.readthedocs.io/en/latest/guides/Bots.html#generic-csv-parser"
 
 
 class GenericCsvParserBot(ParserBot):
@@ -42,7 +39,11 @@ class GenericCsvParserBot(ParserBot):
         if type(self.columns) is str:
             self.columns = [column.strip() for column in self.columns.split(",")]
 
-        self.type_translation = json.loads(getattr(self.parameters, 'type_translation', None) or '{}')
+        self.type_translation = getattr(self.parameters, 'type_translation', {})
+        if self.type_translation and isinstance(self.type_translation, str):  # not-empty string
+            self.type_translation = json.loads(self.type_translation)
+        elif not self.type_translation:  # empty string
+            self.type_translation = {}
         self.data_type = json.loads(getattr(self.parameters, 'data_type', None) or '{}')
 
         # prevents empty strings:
@@ -52,28 +53,33 @@ class GenericCsvParserBot(ParserBot):
         if self.time_format not in TIME_CONVERSIONS.keys():
             raise InvalidArgument('time_format', got=self.time_format,
                                   expected=list(TIME_CONVERSIONS.keys()),
-                                  docs='docs/Bots.md')
+                                  docs=DOCS)
         self.filter_text = getattr(self.parameters, 'filter_text', None)
         self.filter_type = getattr(self.parameters, 'filter_type', None)
         if self.filter_type and self.filter_type not in ('blacklist', 'whitelist'):
             raise InvalidArgument('filter_type', got=self.filter_type,
                                   expected=("blacklist", "whitelist"),
-                                  docs='docs/Bots.md')
+                                  docs=DOCS)
         self.columns_required = getattr(self.parameters, 'columns_required',
                                         [True for _ in self.columns])
         if len(self.columns) != len(self.columns_required):
             raise ValueError("Length of parameters 'columns' (%d) and 'columns_required' (%d) "
                              "needs to be equal." % (len(self.columns), len(self.columns_required)))
 
+        self.compose = getattr(self.parameters, 'compose_fields', {}) or {}
+
     def parse(self, report):
         raw_report = utils.base64_decode(report.get("raw"))
         raw_report = raw_report.translate({0: None})
-        # ignore lines starting with #
-        raw_report = re.sub(r'(?m)^#.*\n?', '', raw_report)
+        # ignore lines starting with #. # can have leading spaces/tabs
+        raw_report = re.sub(r'(?m)^[ \t]*#.*\n?', '', raw_report)
         # ignore null bytes
         raw_report = re.sub(r'(?m)\0', '', raw_report)
+        # ignore lines having mix of spaces and tabs only
+        raw_report = re.sub(r'(?m)^[ \t]*\n?', '', raw_report)
         # skip header
         if getattr(self.parameters, 'skip_header', False):
+            self.tempdata.append(raw_report[:raw_report.find('\n')])
             raw_report = raw_report[raw_report.find('\n') + 1:]
         for row in csv.reader(io.StringIO(raw_report),
                               delimiter=str(self.parameters.delimiter)):
@@ -87,15 +93,13 @@ class GenericCsvParserBot(ParserBot):
                 else:
                     continue
             else:
-                    yield row
+                yield row
 
     def parse_line(self, row, report):
         event = self.new_event(report)
 
-        for key, value, required in zip(self.columns, row, self.columns_required):
-            keys = key.split('|') if '|' in key else [key, ]
-            value = value.strip()
-
+        for keygroup, value, required in zip(self.columns, row, self.columns_required):
+            keys = keygroup.split('|') if '|' in keygroup else [keygroup, ]
             for key in keys:
                 if isinstance(value, str) and not value:  # empty string is never valid
                     break
@@ -107,17 +111,13 @@ class GenericCsvParserBot(ParserBot):
                     else:
                         value = None
 
-                if key in ["__IGNORE__", ""]:
+                if key in ("__IGNORE__", ""):
                     break
 
                 if key in self.data_type:
                     value = DATA_CONVERSIONS[self.data_type[key]](value)
 
-                if key in ["time.source", "time.destination"]:
-                    try:
-                        value = int(value)
-                    except:
-                        pass
+                if key in ("time.source", "time.destination"):
                     value = TIME_CONVERSIONS[self.time_format](value)
                 elif key.endswith('.url'):
                     if not value:
@@ -134,10 +134,13 @@ class GenericCsvParserBot(ParserBot):
             else:
                 # if the value sill remains unadded we need to inform if the key is needed
                 if required:
-                    raise exceptions.InvalidValue(key, value)
+                    raise InvalidValue(key, value)
 
-        if hasattr(self.parameters, 'type')\
-                and "classification.type" not in event:
+        # Field composing
+        for key, value in self.compose.items():
+            event[key] = value.format(*row)
+
+        if hasattr(self.parameters, 'type') and "classification.type" not in event:
             event.add('classification.type', self.parameters.type)
         event.add("raw", self.recover_line(row))
         yield event

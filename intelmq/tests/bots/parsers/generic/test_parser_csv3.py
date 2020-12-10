@@ -26,7 +26,7 @@ EXAMPLE_EVENT = {"feed.name": "Sample CSV Feed",
                  "source.fqdn": "mail5.bulls.unisonplatform.com",
                  "event_description.text": "Really bad actor site comment",
                  "classification.type": "malware",
-                 "extra": "{\"text\": \"extra_data_for_test\"}",
+                 "extra.text": "extra_data_for_test",
                  "raw": "MjAxNi0xMi0xNCAwNDoxOTowMCxUZXN0aW5nLFJlYWxseSBiYWQg"
                         "YWN0b3Igc2l0ZSBjb21tZW50LE5vdGhpbmcsVW5pbXBvcnRhbnQs"
                         "d3d3LmNlbm5vd29ybGQuY29tL1BheW1lbnRfQ29uZmlybWF0aW9u"
