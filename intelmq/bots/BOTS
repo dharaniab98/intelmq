@@ -552,6 +552,9 @@
             "module": "intelmq.bots.parsers.json_custom.parser",
             "parameters": {
                 "splitlines": false,
+                "multiple_msg_field": null,
+                "json_data_format": false,
+                "json_data_key": null,
                 "time_format": null,
                 "translate_fields": {}
             }

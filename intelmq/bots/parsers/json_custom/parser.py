@@ -2,9 +2,9 @@
 
 from dateutil.parser import parse
 
-from intelmq.lib.bot import Bot
+from intelmq.lib.bot import ParserBot
 from intelmq.lib.harmonization import DateTime
-from intelmq.lib.message import Message, MessageFactory
+from intelmq.lib.message import Message
 from intelmq.lib.utils import base64_decode
 
 TIME_CONVERSIONS = {'timestamp': DateTime.from_timestamp,
@@ -13,7 +13,7 @@ TIME_CONVERSIONS = {'timestamp': DateTime.from_timestamp,
                     None: lambda value: parse(value, fuzzy=True).isoformat() + " UTC"}
 
 
-class JSONCustomParserBot(Bot):
+class JSONCustomParserBot(ParserBot):
 
     def init(self):
         self.time_format = getattr(self.parameters, "time_format", None)
@@ -22,8 +22,11 @@ class JSONCustomParserBot(Bot):
                                   expected=list(TIME_CONVERSIONS.keys()),
                                   docs='docs/Bots.md')
 
+        self.json_data_format = getattr(self.parameters, 'json_data_format', False)
+        self.json_data_key = getattr(self.parameters, 'json_data_key', 'data')
+        self.multiple_msg_field = getattr(self.parameters, 'multiple_msg_field', None)
         self.translate_fields = getattr(self.parameters, 'translate_fields', {})
-        self.split_lines      = getattr(self.parameters, 'splitlines', False)
+        self.split_lines = getattr(self.parameters, 'splitlines', False)
         self.default_url_protocol = getattr(self.parameters, 'default_url_protocol', 'http://')
         self.classification_type = getattr(self.parameters, 'type')
 
@@ -43,19 +46,22 @@ class JSONCustomParserBot(Bot):
     def process(self):
 
         report = self.receive_message()
+        raw_report = base64_decode(report["raw"])
 
-        if self.split_lines:
-            lines = base64_decode(report['raw']).splitlines()
+        if self.json_data_format:
+            lines = Message.unserialize(raw_report)[self.json_data_key]
+        elif self.split_lines:
+            lines = raw_report.splitlines()
         else:
-            lines = [base64_decode(report['raw'])]
+            lines = [raw_report]
 
         for line in lines:
             if not line:
                 continue
 
-            msg = Message.unserialize(line)
+            msg = Message.unserialize(line) if not self.json_data_format else line 
             flatten_msg = self.flatten_json(msg)
-            custom_msg = {}
+            event_msg = {}
 
             for key in self.translate_fields:
                 data = flatten_msg.get(self.translate_fields[key])
@@ -73,29 +79,25 @@ class JSONCustomParserBot(Bot):
                     if '://' not in data:
                         data = self.default_url_protocol + data
 
-                custom_msg[key] = data
+                event_msg[key] = data
 
-            custom_msgs = []
-
-            if "source.ip" in custom_msg and type(custom_msg["source.ip"]) is list:
-                for ip in custom_msg["source.ip"]:
-                    new_msg = custom_msg.copy()
-                    new_msg["source.ip"] = ip
-                    custom_msgs.append(new_msg)
+            multiple_msgs = []
+            if self.multiple_msg_field in event_msg and type(event_msg[self.multiple_msg_field]) is list:
+                for value in event_msg[self.multiple_msg_field]:
+                    new_msg = event_msg.copy()
+                    new_msg[self.multiple_msg_field] = value
+                    multiple_msgs.append(new_msg)
             else:
-                custom_msgs = [custom_msg]
-            for msg in custom_msgs:
-                new_event = MessageFactory.from_dict(msg,
-                                                     harmonization=self.harmonization,
-                                                     default_type='Event')
+                multiple_msgs = [event_msg]
+
+            for event_msg in multiple_msgs:
                 event = self.new_event(report)
-                event.update(new_event)
+                event.update(event_msg)
 
                 if self.classification_type and "classification.type" not in event:
                     event.add('classification.type', self.classification_type)
-
-                if 'raw' not in event:
-                    event['raw'] = line
+             
+                event['raw'] = Message.serialize(line) if self.json_data_format else line
                 self.send_message(event)
 
         self.acknowledge_message()
