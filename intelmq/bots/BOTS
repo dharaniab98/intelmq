@@ -122,6 +122,19 @@
                 "rate_limit": 3600
             }
         },
+        "Qradar Event": {
+            "description": "Collect events from Qradar using AQL Query",
+            "module": "intelmq.bots.collectors.qradar_event.collector",
+            "parameters": {
+                "name": "Qradar",
+                "provider": "",
+                "qradar_host": "",
+                "http_username": null,
+                "http_password": null,
+                "aql_query": "",
+                "rate_limit": 3600
+            }
+        },
         "Redis Generic": {
             "description": "Collect events from a Redis Queue.",
             "module": "intelmq.bots.collectors.redis.collector",
