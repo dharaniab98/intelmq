@@ -762,6 +762,11 @@
             "module": "intelmq.bots.parsers.threatminer.parser",
             "parameters": {}
         },
+        "Threatfox": {
+            "description": "threatfox is the bot responsible to parse the report and sanitize the information.",
+            "module": "intelmq.bots.parsers.threatfox.parser",
+            "parameters": {}
+        },
         "TLS": {
             "description": "Tls Parser is the bot responsible to parse the report and sanitize the information.",
             "module": "intelmq.bots.parsers.tls.parser",
