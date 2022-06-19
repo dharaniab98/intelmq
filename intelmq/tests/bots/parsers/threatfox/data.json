@@ -1,0 +1,23 @@
+{
+  "query_status": "ok",
+  "data": [
+    {
+      "id": "716085",
+      "ioc": "904b693370bd0fe9427c00de8520925c0ef4ccd85b4b9730590780dd3ac9ca1b",
+      "threat_type": "payload",
+      "threat_type_desc": "Indicator that identifies a malware sample (payload)",
+      "ioc_type": "sha256_hash",
+      "ioc_type_desc": "SHA256 hash of a malware sample (payload)",
+      "malware": "win.emotet",
+      "malware_printable": "Emotet",
+      "malware_alias": "Geodo,Heodo",
+      "malware_malpedia": "https://malpedia.caad.fkie.fraunhofer.de/details/win.emotet",
+      "confidence_level": 75,
+      "first_seen": "2022-06-17 15:08:51 UTC",
+      "last_seen": "2022-06-17 15:12:17 UTC",
+      "reference": null,
+      "reporter": "Cryptolaemus1",
+      "tags": ["epoch4", "exe"]
+    }
+  ]
+}
