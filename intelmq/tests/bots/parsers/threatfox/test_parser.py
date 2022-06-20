@@ -8,7 +8,6 @@ from intelmq.bots.parsers.threatfox.parser import ThreatfoxParserBot
 
 with open(os.path.join(os.path.dirname(__file__), 'data.json'), 'rb') as fh:
     RAW = base64.b64encode(fh.read()).decode()
-    print(RAW)
 
 REPORT = {"time.observation": "2022-06-17T13:13:10+00:00",
           "raw": RAW,
@@ -50,14 +49,7 @@ class TestThreatfoxParserBot(test.BotTestCase, unittest.TestCase):
     def test_sample(self):
         """ Test if correct Event has been produced. """
         self.input_message = REPORT
-        # self.sysconfig = {"json_data_format": True,
-        #                   "json_data_key": "data",
-        #                   "type": "malware",
-        #                   "translate_fields": {"source.ip": "ip",
-        #                                        "time.source": "last_seen",
-        #                                        "extra.tags": "tags"
-        #                                        }
-        #                   }
+        self.sysconfig = {}
         self.run_bot()
         self.assertMessageEqual(0, EVENT)
 

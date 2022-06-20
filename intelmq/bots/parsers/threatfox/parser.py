@@ -1,10 +1,8 @@
 """
-JSON Parser Bot
+ThreatfoxParserBot
 Retrieves a base64 encoded JSON-String from raw and converts it into an
 event.
 
-Copyright (C) 2016 by Bundesamt für Sicherheit in der Informationstechnik
-Software engineering by Intevation GmbH
 """
 from intelmq.lib.bot import Bot
 from intelmq.lib.utils import base64_decode
@@ -17,7 +15,6 @@ class ThreatfoxParserBot(Bot):
     def process(self):
         report = self.receive_message()
         raw_report = base64_decode(report["raw"])
-        self.logger.info('msq', raw_report)
         result = json.loads(raw_report)
         for feed in result["data"]:
             event = self.new_event(report)
@@ -29,9 +26,10 @@ class ThreatfoxParserBot(Bot):
                 event.add('source.fqdn', feed["ioc"])
             elif(feed["ioc_type"] == "url"):
                 event.add('source.url', feed["ioc"])
-            else:
-                pass
-                # self.logger.info('ioc_type not defined', feed["ioc_type"])
+            elif(feed["ioc_type"] == "md5_hash"):
+                event.add('malware.hash.md5', feed["ioc"])
+            elif(feed["ioc_type"] == "sha1_hash"):
+                event.add('malware.hash.sha1', feed["ioc"])
             event.add('malware.name', feed["malware"])
             event.add('extra.tags', feed["tags"])
             event.add('time.source', feed["first_seen"])
