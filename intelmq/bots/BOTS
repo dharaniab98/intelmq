@@ -30,6 +30,22 @@
         "rate_limit": 300
       }
     },
+    "Generic http post collector": {
+      "description": "This is used to collect data from a http post request",
+      "group": "Collector",
+      "module": "intelmq.bots.collectors.http_post.collector_http_post",
+      "name": "Http post Request",
+      "parameters": {
+        "http_password": null,
+        "http_url": "<post url>",
+        "http_username": null,
+        "name": "http post",
+        "provider": "< any provider>",
+        "rate_limit": 86400,
+        "ssl_client_certificate": null,
+        "data": "<any data in dict>"
+      }
+    },
     "Generic Mail Attachment Fetcher": {
       "description": "Monitor IMAP mailboxes and retrieve mail attachments",
       "module": "intelmq.bots.collectors.mail.collector_mail_attach",
@@ -95,22 +111,6 @@
         "ssl_client_certificate": null,
         "strip_lines": true,
         "rate_limit": 3600
-      }
-    },
-    "Generic http post collector": {
-      "description": "This is used to collect data from a http post request",
-      "group": "Collector",
-      "module": "intelmq.bots.collectors.http_post.collector_http_post",
-      "name": "Http post Request",
-      "parameters": {
-        "http_password": null,
-        "http_url": "<post url>",
-        "http_username": null,
-        "name": "http post",
-        "provider": "< any provider>",
-        "rate_limit": 86400,
-        "ssl_client_certificate": null,
-        "data": "<any data in dict>"
       }
     },
     "Honeydb Collector": {
@@ -773,14 +773,14 @@
       "module": "intelmq.bots.parsers.talos.parser",
       "parameters": {}
     },
-    "Threatminer": {
-      "description": "Threatminer Parser is the bot responsible to parse the report and sanitize the information.",
-      "module": "intelmq.bots.parsers.threatminer.parser",
-      "parameters": {}
-    },
     "Threatfox": {
       "description": "Threatfox Parser is the bot responsible to parse the report and sanitize the information.",
       "module": "intelmq.bots.parsers.threatfox.parser",
+      "parameters": {}
+    },
+    "Threatminer": {
+      "description": "Threatminer Parser is the bot responsible to parse the report and sanitize the information.",
+      "module": "intelmq.bots.parsers.threatminer.parser",
       "parameters": {}
     },
     "TLS": {
